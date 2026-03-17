@@ -1,0 +1,39 @@
+---
+const { title, description } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <title>{title} - Charli.info</title>
+  </head>
+  <body>
+    <a href="#main">Skip to main content</a>
+
+    <header>
+      <p><a href="/">Charli.info</a></p>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/charliverse">The CharliVerse</a></li>
+          <li><a href="https://inferenceSpace.substack.com">Postcards from Inference Space</a></li>
+          <li><a href="https://www.linkedin.com/newsletters/through-the-ais-of-the-blind-7384240304901689344/">Through the AIs of the Blind</a></li>
+          <li><a href="https://fb.me/AIWithTheBlind">AI with the Blind</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer>
+      <p>Charlotte Joanne Tyrer - <a href="https://github.com/CharliVerse">CharliVerse on GitHub</a></p>
+    </footer>
+  </body>
+</html>
+
+

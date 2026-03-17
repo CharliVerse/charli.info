@@ -1,0 +1,40 @@
+html {
+  line-height: 1.6;
+}
+
+body {
+  margin: 2rem auto;
+  max-width: 65ch;
+  padding: 0 1rem;
+}
+
+h1, h2, h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+p, ul, ol {
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+a {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid;
+  outline-offset: 2px;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+nav li {
+  margin-bottom: 0.5rem;
+}
