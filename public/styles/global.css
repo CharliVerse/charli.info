@@ -1,19 +1,106 @@
+/* ZIC — Zero Information Casualty — global stylesheet
+   Charli.info — Charlotte Joanne Tyrer
+   Structural styling only. No decorative colour, no custom fonts.
+   All visitor OS preferences are respected. */
+
+/* ── Colour tokens ─────────────────────────────────────────────────────── */
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-link: #00008b;       /* dark blue — 14.7:1 on white */
+  --color-link-visited: #4b0082;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121212;
+    --color-text: #e8e8e8;
+    --color-link: #93c5fd;     /* light blue — passes AAA on #121212 */
+    --color-link-visited: #c4b5fd;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #000000;
+    --color-link: #000080;
+    --color-link-visited: #300060;
+  }
+}
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    --color-bg: #000000;
+    --color-text: #ffffff;
+    --color-link: #ffff00;
+    --color-link-visited: #ffccff;
+  }
+}
+
+/* ── Motion ────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+
 html {
   line-height: 1.6;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
 }
 
 body {
   margin: 2rem auto;
   max-width: 65ch;
   padding: 0 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
-h1, h2, h3 {
+/* ── Skip link ──────────────────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  text-decoration: underline;
+  transition: top 0.1s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ── Focus ──────────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
   margin-top: 2rem;
   margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
-p, ul, ol {
+p, ul, ol, dl {
   margin-bottom: 1rem;
 }
 
@@ -22,13 +109,15 @@ ul, ol {
 }
 
 a {
+  color: var(--color-link);
   text-decoration: underline;
 }
 
-:focus-visible {
-  outline: 2px solid;
-  outline-offset: 2px;
+a:visited {
+  color: var(--color-link-visited);
 }
+
+/* ── Navigation ─────────────────────────────────────────────────────────── */
 
 nav ul {
   list-style: none;

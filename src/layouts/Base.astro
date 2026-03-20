@@ -1,18 +1,65 @@
 ---
-const { title, description } = Astro.props;
+const { title, description, type = 'WebPage' } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, 'https://charli.info').href;
+const pageTitle = `${title} — Charli.info`;
+
+const schemaOrg = type === 'WebSite'
+  ? {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://charli.info/#website",
+          "url": "https://charli.info/",
+          "name": "Charli.info",
+          "description": description,
+          "author": { "@id": "https://charli.info/#person" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://charli.info/#person",
+          "name": "Charlotte Joanne Tyrer",
+          "url": "https://charli.info/",
+          "sameAs": [
+            "https://blindant.co.uk",
+            "https://carrados.co.uk",
+            "https://accessassistive.org"
+          ]
+        }
+      ]
+    }
+  : {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+      "url": canonicalUrl,
+      "name": pageTitle,
+      "description": description,
+      "isPartOf": { "@id": "https://charli.info/#website" },
+      "author": { "@id": "https://charli.info/#person" }
+    };
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <title>{title} - Charli.info</title>
+    <title>{pageTitle}</title>
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={type === 'WebSite' ? 'website' : 'article'} />
+    <meta property="og:site_name" content="Charli.info" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
   </head>
   <body>
-    <a href="#main">Skip to main content</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <header>
       <p><a href="/">Charli.info</a></p>
@@ -31,9 +78,7 @@ const { title, description } = Astro.props;
     </main>
 
     <footer>
-      <p>Charlotte Joanne Tyrer - <a href="https://github.com/CharliVerse">CharliVerse on GitHub</a></p>
+      <p>Charlotte Joanne Tyrer — <a href="https://github.com/CharliVerse">CharliVerse on GitHub</a></p>
     </footer>
   </body>
 </html>
-
-
