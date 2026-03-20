@@ -13,9 +13,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.3",
     "@astrojs/sitemap": "^3.7.1",
-    "@pinecone-database/pinecone": "^7.1.0",
     "astro": "^6.0.7"
   },
   "devDependencies": {
