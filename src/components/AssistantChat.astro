@@ -1,0 +1,171 @@
+---
+const initialMessages = [
+  {
+    role: 'assistant',
+    content:
+      'Ask a question about Charlotte Joanne Tyrer, the CharliVerse, AI, accessibility, or philosophy.',
+  },
+];
+---
+
+<section class="chat-shell" aria-labelledby="assistant-chat-title">
+  <div class="chat-header">
+    <h2 id="assistant-chat-title">Ask the site assistant</h2>
+    <p class="chat-intro">
+      This chat runs through a server-side Pinecone Assistant connection so the API key stays private.
+    </p>
+  </div>
+
+  <div
+    class="chat-log"
+    id="assistant-chat-log"
+    role="log"
+    aria-live="polite"
+    aria-relevant="additions text"
+    aria-label="Conversation with the site assistant"
+  >
+    {initialMessages.map((message, index) => (
+      <article
+        class={`chat-message chat-message--${message.role}`}
+        data-role={message.role}
+        aria-label={`${message.role === 'assistant' ? 'Assistant' : 'You'} message ${index + 1}`}
+      >
+        <h3>{message.role === 'assistant' ? 'Assistant' : 'You'}</h3>
+        <p>{message.content}</p>
+      </article>
+    ))}
+  </div>
+
+  <p class="chat-status" id="assistant-chat-status" role="status" aria-live="polite">
+    Ready for your question.
+  </p>
+
+  <form class="chat-form" id="assistant-chat-form">
+    <label for="assistant-chat-input">Your message</label>
+    <textarea
+      id="assistant-chat-input"
+      name="message"
+      rows="5"
+      maxlength="2000"
+      required
+      aria-describedby="assistant-chat-help assistant-chat-status"
+    ></textarea>
+    <p id="assistant-chat-help" class="chat-help">
+      Press Tab to reach the send button. Messages are limited to 2,000 characters.
+    </p>
+    <button type="submit">Send message</button>
+  </form>
+
+  <noscript>
+    <p>This feature needs JavaScript enabled to send messages.</p>
+  </noscript>
+</section>
+
+<script>
+  type ChatRole = 'user' | 'assistant';
+
+  type ChatMessage = {
+    role: ChatRole;
+    content: string;
+  };
+
+  const form = document.querySelector<HTMLFormElement>('#assistant-chat-form');
+  const input = document.querySelector<HTMLTextAreaElement>('#assistant-chat-input');
+  const log = document.querySelector<HTMLElement>('#assistant-chat-log');
+  const status = document.querySelector<HTMLElement>('#assistant-chat-status');
+
+  const history: ChatMessage[] = [];
+
+  function setStatus(message: string) {
+    if (status) {
+      status.textContent = message;
+    }
+  }
+
+  function appendMessage(message: ChatMessage) {
+    if (!log) {
+      return;
+    }
+
+    const article = document.createElement('article');
+    article.className = `chat-message chat-message--${message.role}`;
+    article.dataset.role = message.role;
+    article.setAttribute('aria-label', `${message.role === 'assistant' ? 'Assistant' : 'You'} message`);
+
+    const heading = document.createElement('h3');
+    heading.textContent = message.role === 'assistant' ? 'Assistant' : 'You';
+
+    const paragraph = document.createElement('p');
+    paragraph.textContent = message.content;
+
+    article.append(heading, paragraph);
+    log.append(article);
+    article.scrollIntoView({ block: 'end' });
+  }
+
+  async function handleSubmit(event: SubmitEvent) {
+    event.preventDefault();
+
+    if (!form || !input) {
+      return;
+    }
+
+    const message = input.value.trim();
+
+    if (!message) {
+      setStatus('Please enter a message before sending.');
+      input.focus();
+      return;
+    }
+
+    const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    input.disabled = true;
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    appendMessage({ role: 'user', content: message });
+    setStatus('Sending your message.');
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message,
+          history,
+        }),
+      });
+
+      const data = (await response.json()) as { message?: string; error?: string };
+
+      if (!response.ok || !data.message) {
+        throw new Error(data.error || 'The assistant could not answer right now.');
+      }
+
+      history.push({ role: 'user', content: message });
+
+      const assistantMessage: ChatMessage = { role: 'assistant', content: data.message };
+      history.push(assistantMessage);
+      appendMessage(assistantMessage);
+      setStatus('Assistant reply received.');
+      input.value = '';
+    } catch (error) {
+      const messageText =
+        error instanceof Error ? error.message : 'The assistant could not answer right now.';
+      setStatus(messageText);
+    } finally {
+      input.disabled = false;
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+
+      input.focus();
+    }
+  }
+
+  form?.addEventListener('submit', handleSubmit);
+</script>

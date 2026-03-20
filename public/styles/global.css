@@ -127,3 +127,79 @@ nav ul {
 nav li {
   margin-bottom: 0.5rem;
 }
+
+.chat-shell {
+  margin-top: 3rem;
+  padding: 1.25rem;
+  border: 1px solid currentColor;
+}
+
+.chat-header h2 {
+  margin-top: 0;
+}
+
+.chat-intro,
+.chat-help,
+.chat-status {
+  font-size: 0.95rem;
+}
+
+.chat-log {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.chat-message {
+  padding: 1rem;
+  border: 1px solid currentColor;
+}
+
+.chat-message h3 {
+  margin-top: 0;
+}
+
+.chat-message p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-message--assistant {
+  background-color: color-mix(in srgb, var(--color-bg) 84%, var(--color-text) 16%);
+}
+
+.chat-message--user {
+  background-color: color-mix(in srgb, var(--color-bg) 92%, var(--color-text) 8%);
+}
+
+.chat-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.chat-form textarea,
+.chat-form button {
+  font: inherit;
+}
+
+.chat-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid currentColor;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.chat-form button {
+  width: fit-content;
+  padding: 0.65rem 1rem;
+  border: 1px solid currentColor;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.chat-form button[disabled],
+.chat-form textarea[disabled] {
+  opacity: 0.7;
+  cursor: wait;
+}

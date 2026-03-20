@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# Charli.info
+
+Astro site for Charlotte Joanne Tyrer, now with a server-side Pinecone Assistant chat endpoint and an accessible visitor chat interface on the home page.
+
+## Local setup
+
+1. Install dependencies:
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. Create a local `.env` file from `.env.example`.
 
-## 🚀 Project Structure
+3. Add a valid Pinecone API key and assistant name:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```dotenv
+PINECONE_API_KEY=your-real-pinecone-api-key
+PINECONE_ASSISTANT_NAME=charli-site-assistant
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+4. Run the site:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Pinecone assistant notes
 
-## 🧞 Commands
+- The browser must never receive the Pinecone API key. All Pinecone calls are made from the Astro server endpoint at `/api/chat`.
+- If the configured assistant does not already exist, the server creates it automatically and waits for it to become ready.
+- Default assistant instructions are provided in code, but you can override them with `PINECONE_ASSISTANT_INSTRUCTIONS`.
 
-All commands are run from the root of the project, from a terminal:
+## Secret hygiene
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Plaintext Pinecone keys should never be committed to the repo.
+- Any Pinecone key previously stored in local root text files should be treated as compromised and rotated in Pinecone before deployment.
+- Keep `.env` files local and out of source control.
 
-## 👀 Want to learn more?
+## Commands
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `npm run dev` starts the local Astro dev server.
+- `npm run check` runs Astro's project checks and diagnostics.
+- `npm run build` builds the server-rendered site.
+- `npm run preview` previews the production build locally.
