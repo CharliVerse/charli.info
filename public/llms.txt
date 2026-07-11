@@ -1,0 +1,24 @@
+# Charli.info
+
+> Charli.info is the public home of Charlotte Joanne Tyrer's CharliVerse work. It introduces the ecosystem, its accessibility commitments, and the projects, publications, and communities that sit inside it. Content is licensed under CC BY-SA 4.0 unless stated otherwise.
+
+## Site
+
+- [Home](https://charli.info/) - Entry page explaining the site's purpose, Charlotte Joanne Tyrer's work, and the practical reality of AI-enabled creative life.
+- [The CharliVerse](https://charli.info/charliverse/) - Overview of the interconnected projects, studios, publications, and communities that make up the CharliVerse.
+- [Accessibility Statement](https://charli.info/accessibility/) - Zero Information Casualty accessibility commitments, verification posture, and reading expectations for human and agent visitors.
+
+## Author
+
+- [Charlotte Joanne Tyrer](https://charli.info/) - Founder of Blind Ant, the CharliVerse, and the Museum of Access and Assistive Technology.
+
+## External Projects
+
+- [Blind Ant](https://blindant.co.uk) - Lived experience validation studio at the intersection of AI and accessibility.
+- [CARRADOS](https://carrados.co.uk) - Home of the Tyrer Framework and related theoretical work.
+- [Museum of Access and Assistive Technology](https://accessassistive.org) - Museum project documenting the lived experience of assistive technology.
+
+## Source and Licence
+
+- [GitHub repository](https://github.com/CharliVerse) - Public source front door for the site.
+- Licence: CC BY-SA 4.0

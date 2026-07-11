@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Accessibility Statement"
+  description="Accessibility statement for Charli.info and its Zero Information Casualty baseline."
+>
+  <h1>Accessibility Statement</h1>
+
+  <p>Charli.info follows a Zero Information Casualty baseline. Information must remain available without relying on sight, precision pointing, motion tolerance, or default visual settings.</p>
+
+  <h2>What This Site Commits To</h2>
+
+  <ul>
+    <li>All core content is available as real text in semantic HTML.</li>
+    <li>Every page provides a skip link, a main landmark, clear headings, and keyboard-visible focus.</li>
+    <li>The site respects operating system preferences for reduced motion, color scheme, and higher contrast.</li>
+    <li>Links remain identifiable without relying on color alone.</li>
+    <li>Metadata is present for page titles, descriptions, canonical URLs, and structured data.</li>
+    <li>If images are added, they must include WCAG-compliant alternative text unless they are purely decorative.</li>
+  </ul>
+
+  <h2>Current Scope</h2>
+
+  <p>The current public site is intentionally simple: three public pages, shared navigation, and one shared stylesheet. That simplicity is part of the accessibility strategy.</p>
+
+  <h2>Verification</h2>
+
+  <p>The site is checked with Astro project diagnostics and a repo-local ZIC verification script against the built HTML output.</p>
+
+  <h2>Feedback</h2>
+
+  <p>If any part of the site becomes hard to navigate or understand with assistive technology, that is a defect rather than an edge case.</p>
+</Base>

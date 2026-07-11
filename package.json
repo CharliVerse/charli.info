@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/postbuild-zic.mjs",
     "check": "astro check",
+    "verify:zic": "node scripts/verify-zic.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

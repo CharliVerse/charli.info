@@ -6,6 +6,7 @@
 /* ── Colour tokens ─────────────────────────────────────────────────────── */
 
 :root {
+  color-scheme: light dark;
   --color-bg: #ffffff;
   --color-text: #000000;
   --color-link: #00008b;       /* dark blue — 14.7:1 on white */
@@ -57,6 +58,8 @@ html {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: system-ui, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -65,6 +68,10 @@ body {
   padding: 0 1rem;
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+main:focus {
+  outline: none;
 }
 
 /* ── Skip link ──────────────────────────────────────────────────────────── */
@@ -111,10 +118,22 @@ ul, ol {
 a {
   color: var(--color-link);
   text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.16em;
 }
 
 a:visited {
   color: var(--color-link-visited);
+}
+
+a[aria-current="page"] {
+  font-weight: 700;
+}
+
+@media (prefers-contrast: more) {
+  a {
+    text-decoration-thickness: 0.16em;
+  }
 }
 
 /* ── Navigation ─────────────────────────────────────────────────────────── */
