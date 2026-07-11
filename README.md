@@ -25,12 +25,14 @@ npm run dev
 - `npm run dev` starts the local Astro dev server.
 - `npm run check` runs Astro's project checks and diagnostics.
 - `npm run build` builds the static site.
-- `npm run verify:zic` verifies the built HTML and shared styles against the repo-local [ZIC 1.1 baseline](./ZIC-1.1.md).
+- `npm run verify:zic` verifies the built site and generated agent surface against the repo-local [ZIC 1.2 baseline](./ZIC-1.2.md).
 - `npm run preview` previews the production build locally.
 
 ## Accessibility baseline
 
-This site implements the Zero Information Casualty 1.1 standard and keeps a repo-local verification baseline in [ZIC-1.1.md](./ZIC-1.1.md).
+This site implements the Zero Information Casualty 1.2 standard and keeps a repo-local verification baseline in [ZIC-1.2.md](./ZIC-1.2.md).
+
+The build generates `llms.txt`, `llms-full.txt`, and Markdown mirrors from the rendered pages so the human and agent surfaces share one source of truth.
 
 To verify the current site against that baseline:
 

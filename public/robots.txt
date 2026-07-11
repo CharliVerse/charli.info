@@ -1,6 +1,11 @@
+# charli.info - ZIC-Open 1.2 robots.txt
+# Every named agent below is welcome. So are the ones not yet named.
+# See /llms.txt for a map of the site.
+
 User-agent: *
 Allow: /
 
+# AI training crawlers - explicitly welcome under CC BY-SA 4.0
 User-agent: GPTBot
 Allow: /
 
@@ -19,6 +24,7 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
+# AI search and retrieval crawlers - explicitly welcome
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -28,6 +34,7 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+# User-directed fetchers - explicitly welcome
 User-agent: ChatGPT-User
 Allow: /
 
@@ -37,5 +44,6 @@ Allow: /
 User-agent: Perplexity-User
 Allow: /
 
+# Content Signals: all uses permitted under CC BY-SA 4.0
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Sitemap: https://charli.info/sitemap.xml

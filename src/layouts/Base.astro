@@ -62,6 +62,7 @@ const schemaOrg = type === 'WebSite'
     <meta property="og:type" content={type === 'WebSite' ? 'website' : 'article'} />
     <meta property="og:site_name" content="Charli.info" />
     <meta name="dcterms.license" content={licenseUrl} />
+    <meta name="zic-version" content="1.2" />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
   </head>
@@ -72,8 +73,8 @@ const schemaOrg = type === 'WebSite'
       <p><a href="/" aria-current={currentPath === '/' ? 'page' : undefined}>Charli.info</a></p>
       <nav aria-label="Main navigation">
         <ul>
-          <li><a href="/charliverse" aria-current={currentPath === '/charliverse' ? 'page' : undefined}>The CharliVerse</a></li>
-          <li><a href="/accessibility" aria-current={currentPath === '/accessibility' ? 'page' : undefined}>Accessibility Statement</a></li>
+          <li><a href="/charliverse/" aria-current={currentPath === '/charliverse' ? 'page' : undefined}>The CharliVerse</a></li>
+          <li><a href="/accessibility/" aria-current={currentPath === '/accessibility' ? 'page' : undefined}>Accessibility Statement</a></li>
           <li><a href="https://inferenceSpace.substack.com">Postcards from Inference Space</a></li>
           <li><a href="https://www.linkedin.com/newsletters/through-the-ais-of-the-blind-7384240304901689344/">Through the AIs of the Blind</a></li>
           <li><a href="https://fb.me/AIWithTheBlind">AI with the Blind</a></li>
