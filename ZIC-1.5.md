@@ -1,15 +1,15 @@
-# ZIC 1.2 Baseline
+# ZIC 1.5 Baseline
 
-ZIC means Zero Information Casualty. This repository implements the ZIC-Open profile.
+ZIC means Zero Information Casualty. This repository implements ZIC 1.5 for Charli.info.
 
-For Charli.info, ZIC 1.2 is the minimum accessibility baseline that must be true in source, built output, and public delivery.
+For Charli.info, ZIC 1.5 is the accessibility baseline that must be true in source, built output, and public delivery. It preserves the 1.2 implementation requirements while treating structural information, agent access, delivery, and reconstruction as part of the same duty: relevant information must reach the reader in time to inform perception, action, or participation.
 
 ## Human and structural access
 
 1. Every page must have one `h1`, a descriptive title, a 150-160 character meta description, and a canonical HTTPS URL.
 2. Core content must be semantic static HTML rather than image-only, script-only, or interaction-gated presentation.
 3. Every page must include a skip link and a focusable main landmark target.
-4. Navigation and footer landmarks must be labelled, and the current page must use `aria-current="page"`.
+4. Navigation and footer landmarks must be labelled, and the current page must use `aria-current="page"` where it appears in navigation.
 5. User-operable links and controls must have visible keyboard focus. A programmatically focused main landmark may suppress its outline because it is a skip-link destination, not a control.
 6. Links and states must remain distinguishable without relying on colour alone.
 7. The site must respect reduced motion, light and dark colour schemes, text resizing, and increased-contrast preferences.
@@ -34,6 +34,7 @@ Repository checks are necessary but not sufficient. Before claiming public compl
 3. Enable HTTP-to-HTTPS redirection only after the hostname-valid certificate is active.
 4. Fetch representative pages and agent files using at least one named crawler user-agent.
 5. Ask a live AI assistant to fetch and summarise a page by URL; the result must reflect the actual content.
+6. Ask a machine reader what it could not determine, and correct any semantic ambiguity that would cause it to reconstruct public meaning incorrectly.
 
 ## Repository verification
 

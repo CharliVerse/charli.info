@@ -1,4 +1,4 @@
-# charli.info - ZIC-Open 1.2 robots.txt
+# charli.info - ZIC 1.5 robots.txt
 # Every named agent below is welcome. So are the ones not yet named.
 # See /llms.txt for a map of the site.
 

@@ -1,6 +1,6 @@
 # Charli.info
 
-Astro site for Charlotte Joanne Tyrer, published as a static site.
+Astro site for Charli-Jo Tyrer, published as a static site.
 
 Live site: [charli.info](https://charli.info)
 
@@ -25,12 +25,12 @@ npm run dev
 - `npm run dev` starts the local Astro dev server.
 - `npm run check` runs Astro's project checks and diagnostics.
 - `npm run build` builds the static site.
-- `npm run verify:zic` verifies the built site and generated agent surface against the repo-local [ZIC 1.2 baseline](./ZIC-1.2.md).
+- `npm run verify:zic` verifies the built site and generated agent surface against the repo-local [ZIC 1.5 baseline](./ZIC-1.5.md).
 - `npm run preview` previews the production build locally.
 
 ## Accessibility baseline
 
-This site implements the Zero Information Casualty 1.2 standard and keeps a repo-local verification baseline in [ZIC-1.2.md](./ZIC-1.2.md).
+This site implements the Zero Information Casualty 1.5 standard and keeps a repo-local verification baseline in [ZIC-1.5.md](./ZIC-1.5.md).
 
 The build generates `llms.txt`, `llms-full.txt`, and Markdown mirrors from the rendered pages so the human and agent surfaces share one source of truth.
 

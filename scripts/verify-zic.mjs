@@ -52,7 +52,7 @@ const pageChecks = [
   ['canonical HTTPS URL', (html) => /<link rel="canonical" href="https:\/\/charli\.info\//.test(html)],
   ['open graph title', (html) => html.includes('<meta property="og:title"')],
   ['JSON-LD', (html) => html.includes('<script type="application/ld+json">')],
-  ['ZIC 1.2 declaration', (html) => html.includes('<meta name="zic-version" content="1.2">')],
+  ['ZIC 1.5 declaration', (html) => html.includes('<meta name="zic-version" content="1.5">')],
   ['licence link', (html) => html.includes('<link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">')],
   ['licence meta', (html) => html.includes('<meta name="dcterms.license" content="https://creativecommons.org/licenses/by-sa/4.0/">')],
   ['skip link', (html) => html.includes('class="skip-link" href="#main"')],
@@ -138,4 +138,4 @@ for (const output of ['dist/.nojekyll', 'dist/sitemap.xml']) {
 
 if (failed) process.exit(1);
 
-console.log('ZIC 1.2 verification passed for source, built pages, generated agent surfaces, Markdown mirrors, crawler welcome, sitemap, and licence metadata.');
+console.log('ZIC 1.5 verification passed for source, built pages, generated agent surfaces, Markdown mirrors, crawler welcome, sitemap, and licence metadata.');
