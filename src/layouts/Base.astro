@@ -1,9 +1,9 @@
 ---
 const { title, description, type = 'WebPage' } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, 'https://charli.info').href;
-const pageTitle = `${title} — Charli.info`;
 const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const licenseUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
+const documentTitle = title;
 
 const schemaOrg = type === 'WebSite'
   ? {
@@ -21,13 +21,9 @@ const schemaOrg = type === 'WebSite'
         {
           "@type": "Person",
           "@id": "https://charli.info/#person",
-          "name": "Charlotte Joanne Tyrer",
+          "name": "Charli-Jo Tyrer",
           "url": "https://charli.info/",
-          "sameAs": [
-            "https://blindant.co.uk",
-            "https://carrados.co.uk",
-            "https://accessassistive.org"
-          ]
+          "sameAs": ["https://github.com/CharliVerse"]
         }
       ]
     }
@@ -36,7 +32,7 @@ const schemaOrg = type === 'WebSite'
       "@type": "WebPage",
       "@id": canonicalUrl,
       "url": canonicalUrl,
-      "name": pageTitle,
+      "name": documentTitle,
       "description": description,
       "license": licenseUrl,
       "isPartOf": { "@id": "https://charli.info/#website" },
@@ -54,9 +50,9 @@ const schemaOrg = type === 'WebSite'
     <link rel="license" href={licenseUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <title>{pageTitle}</title>
+    <title>{documentTitle}</title>
 
-    <meta property="og:title" content={pageTitle} />
+    <meta property="og:title" content={documentTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content={type === 'WebSite' ? 'website' : 'article'} />
@@ -70,13 +66,12 @@ const schemaOrg = type === 'WebSite'
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header>
-      <p><a href="/" aria-current={currentPath === '/' ? 'page' : undefined}>Charli.info</a></p>
+      <p>Charli.info</p>
       <nav aria-label="Main navigation">
         <ul>
-          <li><a href="/accessibility/" aria-current={currentPath === '/accessibility' ? 'page' : undefined}>Accessibility Statement</a></li>
-          <li><a href="https://inferenceSpace.substack.com">Postcards from Inference Space</a></li>
-          <li><a href="https://www.linkedin.com/newsletters/through-the-ais-of-the-blind-7384240304901689344/">Through the AIs of the Blind</a></li>
-          <li><a href="https://fb.me/AIWithTheBlind">AI with the Blind</a></li>
+          <li><a href="/" aria-current={currentPath === '/' ? 'page' : undefined}>Home</a></li>
+          <li><a href="/blind-ant/" aria-current={currentPath === '/blind-ant' ? 'page' : undefined}>Blind Ant</a></li>
+          <li><a href="/carrados/" aria-current={currentPath === '/carrados' ? 'page' : undefined}>Carrados</a></li>
         </ul>
       </nav>
     </header>
@@ -86,7 +81,7 @@ const schemaOrg = type === 'WebSite'
     </main>
 
     <footer aria-label="Site footer">
-      <p>Charlotte Joanne Tyrer — <a href="https://github.com/CharliVerse">CharliVerse on GitHub</a></p>
+      <p>Charli-Jo Tyrer - <a href="https://github.com/CharliVerse">CharliVerse on GitHub</a></p>
       <p>Content licence: <a rel="license" href={licenseUrl}>CC BY-SA 4.0</a></p>
     </footer>
   </body>

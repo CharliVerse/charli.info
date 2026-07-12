@@ -2,14 +2,16 @@ import { readFileSync } from 'node:fs';
 
 const pages = [
   { path: 'dist/index.html', mirror: 'dist/index.md', url: '/', currentPageMarker: true },
+  { path: 'dist/blind-ant/index.html', mirror: 'dist/blind-ant/index.md', url: '/blind-ant/', currentPageMarker: true },
+  { path: 'dist/carrados/index.html', mirror: 'dist/carrados/index.md', url: '/carrados/', currentPageMarker: true },
   { path: 'dist/charliverse/index.html', mirror: 'dist/charliverse/index.md', url: '/charliverse/', currentPageMarker: false },
-  { path: 'dist/accessibility/index.html', mirror: 'dist/accessibility/index.md', url: '/accessibility/', currentPageMarker: true },
 ];
 
 const sourcePages = [
   'src/pages/index.astro',
+  'src/pages/blind-ant/index.astro',
+  'src/pages/carrados/index.astro',
   'src/pages/charliverse.astro',
-  'src/pages/accessibility.astro',
   'src/layouts/Base.astro',
 ];
 
@@ -124,7 +126,7 @@ for (const page of pages) {
   if (!llms.includes(mirrorUrl)) fail(`llms.txt: missing Markdown mirror ${mirrorUrl}`);
 }
 
-for (const heading of ['## The CharliVerse', '## Accessibility Statement', '### Access for AI agents']) {
+for (const heading of ['## Charli.info', '## Blind Ant', '## Carrados', '## The CharliVerse']) {
   if (!llmsFull.includes(heading)) fail(`llms-full.txt: missing generated heading "${heading}"`);
 }
 

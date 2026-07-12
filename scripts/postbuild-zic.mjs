@@ -7,22 +7,29 @@ const pages = [
     html: 'dist/index.html',
     markdown: 'dist/index.md',
     url: `${siteUrl}/`,
-    label: 'The CharliVerse home',
-    description: "Charlotte Joanne Tyrer's interconnected studios, publications, communities, and frameworks spanning AI, accessibility, and philosophy.",
+    label: 'Home',
+    description: "Public home of Charli-Jo Tyrer's art, accessibility and agent-first design work.",
+  },
+  {
+    html: 'dist/blind-ant/index.html',
+    markdown: 'dist/blind-ant/index.md',
+    url: `${siteUrl}/blind-ant/`,
+    label: 'Blind Ant',
+    description: 'Conceptual art practice using generative AI for design fiction and speculative artefacts.',
+  },
+  {
+    html: 'dist/carrados/index.html',
+    markdown: 'dist/carrados/index.md',
+    url: `${siteUrl}/carrados/`,
+    label: 'Carrados',
+    description: 'Accessibility and agent-first design work, including Zero Information Casualty.',
   },
   {
     html: 'dist/charliverse/index.html',
     markdown: 'dist/charliverse/index.md',
     url: `${siteUrl}/charliverse/`,
-    label: 'The CharliVerse',
-    description: 'Legacy CharliVerse address with a link to the new home page.',
-  },
-  {
-    html: 'dist/accessibility/index.html',
-    markdown: 'dist/accessibility/index.md',
-    url: `${siteUrl}/accessibility/`,
-    label: 'Accessibility Statement',
-    description: 'ZIC 1.2 commitments for disabled people, assistive technologies, AI agents, crawlers, and user-directed fetchers.',
+    label: 'The CharliVerse legacy page',
+    description: 'Legacy address that points visitors to the Charli.info home page.',
   },
 ];
 
@@ -88,7 +95,7 @@ const renderedPages = pages.map((page) => {
 
 const llms = `# Charli.info
 
-> Charli.info is the public home of Charlotte Joanne Tyrer's CharliVerse work. It introduces the ecosystem, its accessibility commitments, and the projects, publications, and communities inside it. Content is licensed under CC BY-SA 4.0 unless stated otherwise.
+> Charli.info is the public home of Charli-Jo Tyrer's conceptual art, accessibility and agent-first design work. Content is licensed under CC BY-SA 4.0 unless stated otherwise.
 
 ## Site
 
@@ -96,13 +103,12 @@ ${renderedPages.map((page) => `- [${page.label} Markdown](${page.url}index.md) -
 
 ## Author
 
-- [Charlotte Joanne Tyrer](${siteUrl}/) - Founder of Blind Ant, the CharliVerse, and the Museum of Access and Assistive Technology.
+- [Charli-Jo Tyrer](${siteUrl}/) - Blind writer, conceptual artist and accessibility thinker.
 
 ## External projects
 
-- [Blind Ant](https://blindant.co.uk) - Lived experience validation studio at the intersection of AI and accessibility.
-- [CARRADOS](https://carrados.co.uk) - Home of the Tyrer Framework and related theoretical work.
-- [Museum of Access and Assistive Technology](https://accessassistive.org) - Museum project documenting the lived experience of assistive technology.
+- [Blind Ant](${siteUrl}/blind-ant/) - Conceptual art practice using generative AI as an artistic medium.
+- [Carrados](${siteUrl}/carrados/) - Accessibility and agent-first design work, including Zero Information Casualty.
 
 ## Source and licence
 
