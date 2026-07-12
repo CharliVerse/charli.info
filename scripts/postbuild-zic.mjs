@@ -7,15 +7,15 @@ const pages = [
     html: 'dist/index.html',
     markdown: 'dist/index.md',
     url: `${siteUrl}/`,
-    label: 'Home',
-    description: "Entry page about Charlotte Joanne Tyrer's work and the practical reality of AI-enabled creative life.",
+    label: 'The CharliVerse home',
+    description: "Charlotte Joanne Tyrer's interconnected studios, publications, communities, and frameworks spanning AI, accessibility, and philosophy.",
   },
   {
     html: 'dist/charliverse/index.html',
     markdown: 'dist/charliverse/index.md',
     url: `${siteUrl}/charliverse/`,
     label: 'The CharliVerse',
-    description: 'Overview of the projects, studios, publications, communities, and frameworks that make up the CharliVerse.',
+    description: 'Legacy CharliVerse address with a link to the new home page.',
   },
   {
     html: 'dist/accessibility/index.html',

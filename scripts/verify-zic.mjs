@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 
 const pages = [
-  { path: 'dist/index.html', mirror: 'dist/index.md', url: '/' },
-  { path: 'dist/charliverse/index.html', mirror: 'dist/charliverse/index.md', url: '/charliverse/' },
-  { path: 'dist/accessibility/index.html', mirror: 'dist/accessibility/index.md', url: '/accessibility/' },
+  { path: 'dist/index.html', mirror: 'dist/index.md', url: '/', currentPageMarker: true },
+  { path: 'dist/charliverse/index.html', mirror: 'dist/charliverse/index.md', url: '/charliverse/', currentPageMarker: false },
+  { path: 'dist/accessibility/index.html', mirror: 'dist/accessibility/index.md', url: '/accessibility/', currentPageMarker: true },
 ];
 
 const sourcePages = [
@@ -59,7 +59,6 @@ const pageChecks = [
   ['footer landmark', (html) => html.includes('aria-label="Site footer"')],
   ['single h1', (html) => (html.match(/<h1\b/g) ?? []).length === 1],
   ['valid heading sequence', (html) => hasValidHeadingSequence(html)],
-  ['current page marker', (html) => (html.match(/aria-current="page"/g) ?? []).length === 1],
   ['no image without alt', (html) => !hasImgWithoutAlt(html)],
   ['no anti-agent refusal tags', (html) => !/noai|noimageai/i.test(html)],
   ['human-readable licence', (html) => html.includes('CC BY-SA 4.0')],
@@ -88,6 +87,8 @@ for (const file of sourcePages) {
 for (const page of pages) {
   const html = readFileSync(page.path, 'utf8');
   for (const [label, check] of pageChecks) if (!check(html)) fail(`${page.url}: ${label}`);
+  const currentPageMarkers = (html.match(/aria-current="page"/g) ?? []).length;
+  if (currentPageMarkers !== (page.currentPageMarker ? 1 : 0)) fail(`${page.url}: current page marker`);
 
   const mirror = readFileSync(page.mirror, 'utf8');
   if (/^- .+\n#{1,6} /m.test(mirror)) fail(`${page.mirror}: heading is not separated from preceding list`);
@@ -123,7 +124,7 @@ for (const page of pages) {
   if (!llms.includes(mirrorUrl)) fail(`llms.txt: missing Markdown mirror ${mirrorUrl}`);
 }
 
-for (const heading of ['## We have equality.', '## The CharliVerse', '## Accessibility Statement', '### Access for AI agents']) {
+for (const heading of ['## The CharliVerse', '## Accessibility Statement', '### Access for AI agents']) {
   if (!llmsFull.includes(heading)) fail(`llms-full.txt: missing generated heading "${heading}"`);
 }
 
