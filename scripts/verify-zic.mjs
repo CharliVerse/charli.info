@@ -126,7 +126,7 @@ for (const page of pages) {
   if (!llms.includes(mirrorUrl)) fail(`llms.txt: missing Markdown mirror ${mirrorUrl}`);
 }
 
-for (const heading of ['## Charli-Jo Tyrer', '## Blind Ant', '## Carrados', '## The CharliVerse']) {
+for (const heading of ['## The public home of Charli-Jo Tyrer.', '## Blind Ant', '## Carrados', '## The CharliVerse']) {
   if (!llmsFull.includes(heading)) fail(`llms-full.txt: missing generated heading "${heading}"`);
 }
 
