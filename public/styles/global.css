@@ -7,18 +7,20 @@
 
 :root {
   color-scheme: light dark;
-  --color-bg: #ffffff;
-  --color-text: #000000;
-  --color-link: #00008b;       /* dark blue — 14.7:1 on white */
-  --color-link-visited: #4b0082;
+  --color-bg: #f6f8f5;
+  --color-text: #17211f;
+  --color-link: #006b67;
+  --color-link-visited: #5a3574;
+  --color-focus: #b8461f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #121212;
-    --color-text: #e8e8e8;
-    --color-link: #93c5fd;     /* light blue — passes AAA on #121212 */
-    --color-link-visited: #c4b5fd;
+    --color-bg: #111c1a;
+    --color-text: #edf4f0;
+    --color-link: #64e0d8;
+    --color-link-visited: #e1b6fb;
+    --color-focus: #ffb394;
   }
 }
 
@@ -28,6 +30,7 @@
     --color-text: #000000;
     --color-link: #000080;
     --color-link-visited: #300060;
+    --color-focus: #000000;
   }
 }
 
@@ -37,6 +40,7 @@
     --color-text: #ffffff;
     --color-link: #ffff00;
     --color-link-visited: #ffccff;
+    --color-focus: #ffffff;
   }
 }
 
@@ -57,7 +61,7 @@ html {
   line-height: 1.6;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: system-ui, sans-serif;
+  font-family: Aptos, "Segoe UI Variable", "Segoe UI", Candara, sans-serif;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -95,16 +99,18 @@ main:focus {
 /* ── Focus ──────────────────────────────────────────────────────────────── */
 
 :focus-visible {
-  outline: 3px solid var(--color-text);
+  outline: 3px solid var(--color-focus);
   outline-offset: 3px;
 }
 
 /* ── Typography ─────────────────────────────────────────────────────────── */
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
   line-height: 1.3;
+  letter-spacing: 0.01em;
 }
 
 p, ul, ol, dl {
