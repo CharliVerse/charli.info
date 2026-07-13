@@ -1,0 +1,52 @@
+---
+import Base from '../../../layouts/Base.astro';
+---
+
+<Base
+  title="Zero Information Casualty Design Standard | Carrados"
+  description="Zero Information Casualty Design Standard sets agent-first web engineering requirements that preserve public meaning across people, interfaces and AI agents."
+>
+  <h1>Zero Information Casualty (ZIC)</h1>
+  <p class="site-intro">An agent-first web design standard.</p>
+  <p>Zero Information Casualty is the practical engineering standard derived from the Tyrer Framework. It defines how websites and digital systems can prevent information casualties and preserve public meaning across visual browsers, screen readers, voice interfaces, search engines and AI agents.</p>
+
+  <section aria-labelledby="central-requirement">
+    <h2 id="central-requirement">The central requirement</h2>
+    <p>No public information should become inaccessible because of the way a site is rendered, delivered or interpreted.</p>
+    <p>A ZIC-compliant site is designed around the semantic layer rather than the visual presentation. Every meaningful fact must exist independently of colour, layout, typography or graphical appearance. The visual interface is one rendering of the information, not its authoritative source.</p>
+  </section>
+
+  <section aria-labelledby="human-structural-access">
+    <h2 id="human-structural-access">Human and structural access</h2>
+    <ul>
+      <li>Use semantic static HTML for core content, with one clear page heading, descriptive metadata and a canonical HTTPS address.</li>
+      <li>Provide skip links, labelled landmarks, honest heading order and visible keyboard focus.</li>
+      <li>Keep links and states distinguishable without colour alone, and respect text resizing, reduced motion, colour scheme and increased-contrast preferences.</li>
+      <li>Give informative images WCAG-compliant alternative text and keep critical meaning out of image-only or interaction-gated presentation.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="agent-access">
+    <h2 id="agent-access">Agent access</h2>
+    <p>Modern websites are read by user-directed AI agents as well as human visitors. ZIC distinguishes between accessibility, discoverability and later machine use, so publishers can make independent decisions about indexing and training while keeping public information readable by agents acting for people.</p>
+    <ul>
+      <li>Generate agent-facing representations, including Markdown mirrors, from the same rendered pages as the public HTML.</li>
+      <li>Keep crawler policy, sitemap, agent map, Markdown mirrors and canonical pages consistent.</li>
+      <li>Publish licence metadata in page metadata, structured data, the footer and agent-facing materials.</li>
+      <li>Do not use contradictory blocks, crawler challenges or AI-refusal directives against public content intended to be openly read.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="delivery-verification">
+    <h2 id="delivery-verification">Delivery and verification</h2>
+    <p>Accessibility is also a delivery responsibility. A correct repository is not enough if the public site cannot be fetched, read or reconstructed accurately.</p>
+    <p>Verify canonical pages without JavaScript or cookies, confirm valid HTTPS delivery, test representative pages with named crawler user agents, and ask machine readers what they could not determine. Correct semantic ambiguity before it becomes an information casualty.</p>
+  </section>
+
+  <section aria-labelledby="zic-baseline">
+    <h2 id="zic-baseline">ZIC 1.5 baseline</h2>
+    <p>Charli.info implements the ZIC 1.5 baseline. The complete repository baseline is available in the project source as <a href="https://github.com/CharliVerse/charli.info/blob/main/ZIC-1.5.md">ZIC 1.5 Baseline</a>.</p>
+  </section>
+
+  <p><a href="/carrados/">Back to Carrados</a></p>
+</Base>

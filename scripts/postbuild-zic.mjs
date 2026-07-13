@@ -25,6 +25,20 @@ const pages = [
     description: 'Accessibility and agent-first design work, including Zero Information Casualty.',
   },
   {
+    html: 'dist/carrados/tyrer-framework/index.html',
+    markdown: 'dist/carrados/tyrer-framework/index.md',
+    url: `${siteUrl}/carrados/tyrer-framework/`,
+    label: 'The Tyrer Framework',
+    description: 'A theory of accessibility as information integrity, visual dominance and perceptual sovereignty.',
+  },
+  {
+    html: 'dist/carrados/zic-design-standard/index.html',
+    markdown: 'dist/carrados/zic-design-standard/index.md',
+    url: `${siteUrl}/carrados/zic-design-standard/`,
+    label: 'Zero Information Casualty Design Standard',
+    description: 'Agent-first web engineering requirements for preserving public meaning across interfaces and readers.',
+  },
+  {
     html: 'dist/charliverse/index.html',
     markdown: 'dist/charliverse/index.md',
     url: `${siteUrl}/charliverse/`,

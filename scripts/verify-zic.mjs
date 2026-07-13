@@ -4,6 +4,8 @@ const pages = [
   { path: 'dist/index.html', mirror: 'dist/index.md', url: '/', currentPageMarker: true },
   { path: 'dist/blind-ant/index.html', mirror: 'dist/blind-ant/index.md', url: '/blind-ant/', currentPageMarker: true },
   { path: 'dist/carrados/index.html', mirror: 'dist/carrados/index.md', url: '/carrados/', currentPageMarker: true },
+  { path: 'dist/carrados/tyrer-framework/index.html', mirror: 'dist/carrados/tyrer-framework/index.md', url: '/carrados/tyrer-framework/', currentPageMarker: false },
+  { path: 'dist/carrados/zic-design-standard/index.html', mirror: 'dist/carrados/zic-design-standard/index.md', url: '/carrados/zic-design-standard/', currentPageMarker: false },
   { path: 'dist/charliverse/index.html', mirror: 'dist/charliverse/index.md', url: '/charliverse/', currentPageMarker: false },
 ];
 
@@ -11,6 +13,8 @@ const sourcePages = [
   'src/pages/index.astro',
   'src/pages/blind-ant/index.astro',
   'src/pages/carrados/index.astro',
+  'src/pages/carrados/tyrer-framework/index.astro',
+  'src/pages/carrados/zic-design-standard/index.astro',
   'src/pages/charliverse.astro',
   'src/layouts/Base.astro',
 ];
