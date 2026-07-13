@@ -75,6 +75,8 @@ function htmlMainToMarkdown(html, pageUrl) {
   if (!main) throw new Error(`No main landmark found in ${pageUrl}`);
 
   let output = main
+    .replace(/<pre\b[^>]*>\s*<code\b[^>]*>([\s\S]*?)<\/code>\s*<\/pre>/gi, (_, text) => `\n\`\`\`text\n${decodeEntities(text).replace(/<[^>]+>/g, '').trim()}\n\`\`\`\n`)
+    .replace(/<img\b[^>]*\bsrc="([^"]+)"[^>]*\balt="([^"]*)"[^>]*>/gi, (_, src, alt) => `\n![${decodeEntities(alt)}](${new URL(decodeEntities(src), pageUrl).href})\n`)
     .replace(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi, (_, level, text) => `\n${'#'.repeat(Number(level))} ${cleanInline(text, pageUrl)}\n`)
     .replace(/<li\b[^>]*>([\s\S]*?)<\/li>/gi, (_, text) => `\n- ${cleanInline(text, pageUrl)}`)
     .replace(/<p\b[^>]*>([\s\S]*?)<\/p>/gi, (_, text) => `\n${cleanInline(text, pageUrl)}\n`)
@@ -113,7 +115,7 @@ const llms = `# Charli.info
 
 ## Site
 
-${renderedPages.map((page) => `- [${page.label} Markdown](${page.url}index.md) - ${page.description}`).join('\n')}
+${renderedPages.map((page) => `- [${page.label}](${page.url}) — [Markdown mirror](${page.url}index.md) - ${page.description}`).join('\n')}
 
 ## Author
 

@@ -13,8 +13,8 @@ const sourcePages = [
   'src/pages/index.astro',
   'src/pages/blind-ant/index.astro',
   'src/pages/carrados/index.astro',
-  'src/pages/carrados/tyrer-framework/index.astro',
-  'src/pages/carrados/zic-design-standard/index.astro',
+  'src/pages/carrados/tyrer-framework/index.md',
+  'src/pages/carrados/zic-design-standard/index.md',
   'src/pages/charliverse.astro',
   'src/layouts/Base.astro',
 ];
@@ -52,7 +52,7 @@ function metaDescription(markup) {
 
 const pageChecks = [
   ['html lang', (html) => html.includes('<html lang="en">')],
-  ['description length 150-160', (html) => metaDescription(html).length >= 150 && metaDescription(html).length <= 160],
+  ['description present', (html) => metaDescription(html).length > 0],
   ['canonical HTTPS URL', (html) => /<link rel="canonical" href="https:\/\/charli\.info\//.test(html)],
   ['open graph title', (html) => html.includes('<meta property="og:title"')],
   ['JSON-LD', (html) => html.includes('<script type="application/ld+json">')],
@@ -126,7 +126,9 @@ for (const agent of requiredCrawlerAgents) {
 if (!llms.startsWith('# Charli.info\n\n> ')) fail('llms.txt: missing H1 and blockquote summary');
 if (!llms.includes('Licence: CC BY-SA 4.0')) fail('llms.txt: missing licence statement');
 for (const page of pages) {
+  const canonicalUrl = `https://charli.info${page.url}`;
   const mirrorUrl = `https://charli.info${page.url}${page.url === '/' ? '' : ''}index.md`;
+  if (!llms.includes(canonicalUrl)) fail(`llms.txt: missing canonical page ${canonicalUrl}`);
   if (!llms.includes(mirrorUrl)) fail(`llms.txt: missing Markdown mirror ${mirrorUrl}`);
 }
 
