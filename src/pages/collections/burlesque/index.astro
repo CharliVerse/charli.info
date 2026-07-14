@@ -1,0 +1,59 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const objects = [
+  {
+    title: 'Tactical™ (Aegis Dynamics Special Announcement)',
+    slug: 'tactical-aegis-dynamics-special-announcement',
+  },
+  {
+    title: 'The Bra and Pants of Antigany',
+    slug: 'the-bra-and-pants-of-antigany',
+  },
+  {
+    title: 'The Mile in His Shoes Is Bollocks',
+    slug: 'the-mile-in-his-shoes-is-bollocks',
+  },
+  {
+    title: 'Poppy Petticoats and the Magic Wand',
+    slug: 'poppy-petticoats-and-the-magic-wand',
+  },
+  {
+    title: 'House of Iceberg Bible & Semiotics Imprint',
+    slug: 'house-of-iceberg-bible-and-semiotics-imprint',
+  },
+  {
+    title: 'VQ4: Felt Is Not Fake',
+    slug: 'vq4-felt-is-not-fake',
+  },
+];
+---
+
+<Base
+  title="Burlesque | Blind Ant | Charli-Jo Tyrer"
+  description="Burlesque is a Blind Ant design-fiction collection of six objects about identity, technology and bodily sovereignty."
+>
+  <h1>Burlesque</h1>
+
+  <img
+    src="/images/burlesque-cover.png"
+    width="1365"
+    height="2048"
+    alt="Burlesque collection poster in a theatrical cabaret style. Red velvet curtains frame a Blind Ant Design Fiction Collections marquee on the left, with the title Burlesque in illuminated red letters. The right side presents six numbered collection elements with sepia and red-tinted images: a military case with pink underwear, antique lingerie, a factory of yellow shoes, a magic wand beside a petticoat, a fashion label called The Hemline, and four silhouetted performers. A woman in burlesque costume and a typewriter appear along the bottom."
+    loading="eager"
+    decoding="async"
+  />
+
+  <p class="site-intro">
+    A collection of six design-fiction objects that use domestic surfaces to expose assumptions about identity, technology and bodily sovereignty.
+  </p>
+
+  <section aria-labelledby="burlesque-objects">
+    <h2 id="burlesque-objects">Objects in Burlesque</h2>
+    <ol>
+      {objects.map((object) => (
+        <li><a href={`/collections/burlesque/${object.slug}/`}>{object.title}</a></li>
+      ))}
+    </ol>
+  </section>
+</Base>
