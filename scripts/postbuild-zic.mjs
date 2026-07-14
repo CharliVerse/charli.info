@@ -1,79 +1,17 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { dirname, join, relative } from 'node:path';
 
 const siteUrl = 'https://charli.info';
-const pages = [
-  {
-    html: 'dist/index.html',
-    markdown: 'dist/index.md',
-    url: `${siteUrl}/`,
-    label: 'Home',
-    description: "Public home of Charli-Jo Tyrer's art, accessibility and agent-first design work.",
-  },
-  {
-    html: 'dist/blind-ant/index.html',
-    markdown: 'dist/blind-ant/index.md',
-    url: `${siteUrl}/blind-ant/`,
-    label: 'Blind Ant',
-    description: 'Conceptual art practice using generative AI for design fiction and speculative artefacts.',
-  },
-  {
-    html: 'dist/carrados/index.html',
-    markdown: 'dist/carrados/index.md',
-    url: `${siteUrl}/carrados/`,
-    label: 'Carrados',
-    description: 'Accessibility and agent-first design work, including Zero Information Casualty.',
-  },
-  {
-    html: 'dist/carrados/tyrer-framework/index.html',
-    markdown: 'dist/carrados/tyrer-framework/index.md',
-    url: `${siteUrl}/carrados/tyrer-framework/`,
-    label: 'The Tyrer Framework',
-    description: 'A theory of accessibility as information integrity, visual dominance and perceptual sovereignty.',
-  },
-  {
-    html: 'dist/carrados/zic-design-standard/index.html',
-    markdown: 'dist/carrados/zic-design-standard/index.md',
-    url: `${siteUrl}/carrados/zic-design-standard/`,
-    label: 'Zero Information Casualty Design Standard',
-    description: 'Agent-first web engineering requirements for preserving public meaning across interfaces and readers.',
-  },
-  {
-    html: 'dist/carrados/classical-and-generative-accessibility/index.html',
-    markdown: 'dist/carrados/classical-and-generative-accessibility/index.md',
-    url: `${siteUrl}/carrados/classical-and-generative-accessibility/`,
-    label: 'Why Accessibility Keeps Getting Worse — and Why, for the First Time, It Might Not',
-    description: 'The Tyrer Framework in plain language: why accessibility erodes, the ladder from visual dominance to perceptual sovereignty, and the fork AI puts in front of us. By Charli-Jo Tyrer.',
-  },
-  {
-    html: 'dist/carrados/the-api-is-the-ui-now/index.html',
-    markdown: 'dist/carrados/the-api-is-the-ui-now/index.md',
-    url: `${siteUrl}/carrados/the-api-is-the-ui-now/`,
-    label: 'The API Is the UI Now',
-    description: "A quiet note on a framework, an architecture Salesforce built for its own reasons, and a first-class screen reader rendering a blind Salesforce user could have now. By Charli-Jo Tyrer.",
-  },
-  {
-    html: 'dist/carrados/the-insurance-that-never-pays-out/index.html',
-    markdown: 'dist/carrados/the-insurance-that-never-pays-out/index.md',
-    url: `${siteUrl}/carrados/the-insurance-that-never-pays-out/`,
-    label: 'The Insurance That Never Pays Out',
-    description: 'The Agentic AI Foundation just published the best case for accessibility-as-architecture in years — and then prescribed keeping the exact layer its own witness says never catches up. A reply. By Charli-Jo Tyrer.',
-  },
-  {
-    html: 'dist/charliverse/index.html',
-    markdown: 'dist/charliverse/index.md',
-    url: `${siteUrl}/charliverse/`,
-    label: 'The CharliVerse legacy page',
-    description: 'Legacy address that points visitors to the Charli.info home page.',
-  },
-];
+
+function walk(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(directory, entry.name);
+    return entry.isDirectory() ? walk(path) : [path];
+  });
+}
 
 function decodeEntities(value) {
-  const named = {
-    amp: '&', apos: "'", gt: '>', lt: '<', nbsp: ' ', quot: '"',
-    ndash: '-', mdash: '-', rsquo: "'", lsquo: "'", rdquo: '"', ldquo: '"',
-  };
-
+  const named = { amp: '&', apos: "'", gt: '>', lt: '<', nbsp: ' ', quot: '"', ndash: '-', mdash: '-', rsquo: "'", lsquo: "'", rdquo: '"', ldquo: '"' };
   return value
     .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
     .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
@@ -82,11 +20,10 @@ function decodeEntities(value) {
 
 function cleanInline(value, pageUrl) {
   return decodeEntities(value)
-    .replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_, href, text) => {
-      const destination = new URL(decodeEntities(href), pageUrl).href;
-      return `[${text.replace(/<[^>]+>/g, '').trim()}](${destination})`;
-    })
+    .replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_, href, text) => `[${text.replace(/<[^>]+>/g, '').trim()}](${new URL(decodeEntities(href), pageUrl).href})`)
+    .replace(/<br\s*\/?>/gi, '  \n')
     .replace(/<[^>]+>/g, '')
+    .replace(/[ \t]+\n/g, '\n')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -98,66 +35,89 @@ function htmlMainToMarkdown(html, pageUrl) {
   let output = main
     .replace(/<pre\b[^>]*>\s*<code\b[^>]*>([\s\S]*?)<\/code>\s*<\/pre>/gi, (_, text) => `\n\`\`\`text\n${decodeEntities(text).replace(/<[^>]+>/g, '').trim()}\n\`\`\`\n`)
     .replace(/<img\b[^>]*\bsrc="([^"]+)"[^>]*\balt="([^"]*)"[^>]*>/gi, (_, src, alt) => `\n![${decodeEntities(alt)}](${new URL(decodeEntities(src), pageUrl).href})\n`)
+    .replace(/<blockquote\b[^>]*>([\s\S]*?)<\/blockquote>/gi, (_, quote) => {
+      const paragraphs = [...quote.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map((match) => `> ${cleanInline(match[1], pageUrl)}`);
+      return `\n${paragraphs.join('\n\n')}\n`;
+    })
+    .replace(/<ol\b[^>]*>([\s\S]*?)<\/ol>/gi, (_, list) => {
+      let index = 0;
+      return list.replace(/<li\b[^>]*>([\s\S]*?)<\/li>/gi, (_, item) => `\n${++index}. ${cleanInline(item, pageUrl)}`);
+    })
+    .replace(/<ul\b[^>]*>([\s\S]*?)<\/ul>/gi, (_, list) => list.replace(/<li\b[^>]*>([\s\S]*?)<\/li>/gi, (_, item) => `\n- ${cleanInline(item, pageUrl)}`))
     .replace(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi, (_, level, text) => `\n${'#'.repeat(Number(level))} ${cleanInline(text, pageUrl)}\n`)
-    .replace(/<li\b[^>]*>([\s\S]*?)<\/li>/gi, (_, text) => `\n- ${cleanInline(text, pageUrl)}`)
     .replace(/<p\b[^>]*>([\s\S]*?)<\/p>/gi, (_, text) => `\n${cleanInline(text, pageUrl)}\n`)
-    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<address\b[^>]*>([\s\S]*?)<\/address>/gi, (_, text) => `\n${cleanInline(text, pageUrl)}\n`)
     .replace(/<[^>]+>/g, '');
 
   output = decodeEntities(output)
     .replace(/[ \t]+\n/g, '\n')
     .replace(/\n{3,}/g, '\n\n')
-    .replace(/^(- .+)\n(#{1,6} )/gm, '$1\n\n$2')
     .trim();
 
   return `${output}\n`;
 }
 
-function shiftHeadings(markdown, amount = 1) {
-  return markdown.replace(/^(#{1,6}) /gm, (_, hashes) => `${'#'.repeat(Math.min(6, hashes.length + amount))} `);
+function pageUrlFor(htmlPath) {
+  const relativePath = relative('dist', htmlPath).replaceAll('\\', '/');
+  if (relativePath === 'index.html') return `${siteUrl}/`;
+  return `${siteUrl}/${relativePath.replace(/\/index\.html$/, '/').replace(/\.html$/, '')}`;
 }
 
-if (existsSync('dist/sitemap-0.xml')) {
-  copyFileSync('dist/sitemap-0.xml', 'dist/sitemap.xml');
+function xmlEscape(value) {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 }
 
+if (existsSync('dist/sitemap-0.xml')) copyFileSync('dist/sitemap-0.xml', 'dist/sitemap.xml');
 writeFileSync('dist/.nojekyll', '');
 
-const renderedPages = pages.map((page) => {
-  const markdown = htmlMainToMarkdown(readFileSync(page.html, 'utf8'), page.url);
-  mkdirSync(dirname(page.markdown), { recursive: true });
-  writeFileSync(page.markdown, markdown);
-  return { ...page, markdown };
-});
+const renderedPages = walk('dist')
+  .filter((path) => path.endsWith('.html') && !path.endsWith('404.html'))
+  .sort()
+  .map((html) => {
+    const source = readFileSync(html, 'utf8');
+    const url = source.match(/<link rel="canonical" href="([^"]+)">/)?.[1] ?? pageUrlFor(html);
+    const title = decodeEntities(source.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? 'Untitled page');
+    const label = title.replace(/\s+—\s+Charli\.info$/, '').trim();
+    const description = decodeEntities(source.match(/<meta name="description" content="([^"]*)">/)?.[1] ?? '');
+    const markdownPath = html === 'dist/index.html' ? 'dist/index.md' : join(dirname(html), 'index.md');
+    const markdown = htmlMainToMarkdown(source, url);
+    mkdirSync(dirname(markdownPath), { recursive: true });
+    writeFileSync(markdownPath, markdown);
+    return { html, markdownPath, url, label, description, markdown };
+  });
 
 const llms = `# Charli.info
 
-> Charli.info is the public home of Charli-Jo Tyrer's conceptual art, accessibility and agent-first design work. Content is licensed under CC BY-SA 4.0 unless stated otherwise.
+> Charli.info is the public home of Charli-Jo Tyrer's conceptual art, accessibility and agent-first design work. Public content is available to sent agents, search indexers, and training crawlers under CC BY-SA 4.0.
 
-## Site
+## Site map
 
-${renderedPages.map((page) => `- [${page.label}](${page.url}) — [Markdown mirror](${page.url}index.md) - ${page.description}`).join('\n')}
+${renderedPages.map((page) => `- [${page.label}](${page.url}) — [Markdown mirror](${page.url}index.md)${page.description ? ` — ${page.description}` : ''}`).join('\n')}
 
-## Author
+## Agent access and policy
 
-- [Charli-Jo Tyrer](${siteUrl}/) - Blind writer, conceptual artist and accessibility thinker.
+- Sent agents: served (ai-input=yes).
+- Search indexing: permitted (search=yes).
+- Model training: permitted (ai-train=yes).
 
-## External projects
+## Author and licence
 
-- [Blind Ant](${siteUrl}/blind-ant/) - Conceptual art practice using generative AI as an artistic medium.
-- [Carrados](${siteUrl}/carrados/) - Accessibility and agent-first design work, including Zero Information Casualty.
-
-## Source and licence
-
-- [GitHub repository](https://github.com/CharliVerse/charli.info) - Public source front door for this site.
+- Author: Charli-Jo Tyrer, blind writer, conceptual artist and accessibility thinker.
 - Licence: CC BY-SA 4.0
+- [GitHub repository](https://github.com/CharliVerse/charli.info) — public source front door for this site.
 `;
 
 const llmsFull = `# Charli.info
 
 > Complete text of Charli.info, generated from the same rendered pages as the public HTML. Content is licensed under CC BY-SA 4.0 unless stated otherwise.
 
-${renderedPages.map((page) => shiftHeadings(page.markdown)).join('\n')}
+${renderedPages.map((page) => page.markdown.replace(/^(#{1,6}) /gm, (_, hashes) => `${'#'.repeat(Math.min(6, hashes.length + 1))} `)).join('\n')}
+## Agent access and policy
+
+Sent agents: served (ai-input=yes).
+Search indexing: permitted (search=yes).
+Model training: permitted (ai-train=yes).
+
 ## Source and licence
 
 Repository: https://github.com/CharliVerse/charli.info
@@ -167,3 +127,7 @@ Licence: CC BY-SA 4.0
 
 writeFileSync('dist/llms.txt', llms);
 writeFileSync('dist/llms-full.txt', llmsFull);
+
+const feedPages = renderedPages.filter((page) => /^https:\/\/charli\.info\/(carrados\/[^/]+\/|pieces\/)/.test(page.url));
+const rss = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Charli.info</title><description>Writing, design fiction, and accessibility work by Charli-Jo Tyrer.</description><link>${siteUrl}/</link><language>en-GB</language>${feedPages.map((page) => `<item><title>${xmlEscape(page.label)}</title><description>${xmlEscape(page.description)}</description><link>${xmlEscape(page.url)}</link><guid isPermaLink="true">${xmlEscape(page.url)}</guid></item>`).join('')}</channel></rss>\n`;
+writeFileSync('dist/rss.xml', rss);

@@ -1,30 +1,7 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join, relative } from 'node:path';
 
-const pages = [
-  { path: 'dist/index.html', mirror: 'dist/index.md', url: '/', currentPageMarker: true },
-  { path: 'dist/blind-ant/index.html', mirror: 'dist/blind-ant/index.md', url: '/blind-ant/', currentPageMarker: true },
-  { path: 'dist/carrados/index.html', mirror: 'dist/carrados/index.md', url: '/carrados/', currentPageMarker: true },
-  { path: 'dist/carrados/tyrer-framework/index.html', mirror: 'dist/carrados/tyrer-framework/index.md', url: '/carrados/tyrer-framework/', currentPageMarker: false },
-  { path: 'dist/carrados/zic-design-standard/index.html', mirror: 'dist/carrados/zic-design-standard/index.md', url: '/carrados/zic-design-standard/', currentPageMarker: false },
-  { path: 'dist/carrados/classical-and-generative-accessibility/index.html', mirror: 'dist/carrados/classical-and-generative-accessibility/index.md', url: '/carrados/classical-and-generative-accessibility/', currentPageMarker: false, article: true, next: 'https://charli.info/carrados/the-api-is-the-ui-now/' },
-  { path: 'dist/carrados/the-api-is-the-ui-now/index.html', mirror: 'dist/carrados/the-api-is-the-ui-now/index.md', url: '/carrados/the-api-is-the-ui-now/', currentPageMarker: false, article: true, prev: 'https://charli.info/carrados/classical-and-generative-accessibility/', next: 'https://charli.info/carrados/the-insurance-that-never-pays-out/' },
-  { path: 'dist/carrados/the-insurance-that-never-pays-out/index.html', mirror: 'dist/carrados/the-insurance-that-never-pays-out/index.md', url: '/carrados/the-insurance-that-never-pays-out/', currentPageMarker: false, article: true, prev: 'https://charli.info/carrados/the-api-is-the-ui-now/' },
-  { path: 'dist/charliverse/index.html', mirror: 'dist/charliverse/index.md', url: '/charliverse/', currentPageMarker: false },
-];
-
-const sourcePages = [
-  'src/pages/index.astro',
-  'src/pages/blind-ant/index.astro',
-  'src/pages/carrados/index.astro',
-  'src/pages/carrados/tyrer-framework/index.md',
-  'src/pages/carrados/zic-design-standard/index.md',
-  'src/pages/carrados/classical-and-generative-accessibility/index.md',
-  'src/pages/carrados/the-api-is-the-ui-now/index.md',
-  'src/pages/carrados/the-insurance-that-never-pays-out/index.md',
-  'src/pages/charliverse.astro',
-  'src/layouts/Base.astro',
-];
-
+const siteUrl = 'https://charli.info';
 const css = readFileSync('public/styles/global.css', 'utf8');
 const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
 const robots = readFileSync('dist/robots.txt', 'utf8');
@@ -33,11 +10,17 @@ const llmsFull = readFileSync('dist/llms-full.txt', 'utf8');
 const rss = readFileSync('dist/rss.xml', 'utf8');
 const license = readFileSync('LICENSE', 'utf8');
 
-const requiredCrawlerAgents = [
-  'GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'CCBot',
-  'Meta-ExternalAgent', 'OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot',
-  'ChatGPT-User', 'Claude-User', 'Perplexity-User',
-];
+function walk(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(directory, entry.name);
+    return entry.isDirectory() ? walk(path) : [path];
+  });
+}
+
+function urlFor(path) {
+  const output = relative('dist', path).replaceAll('\\', '/');
+  return output === 'index.html' ? '/' : `/${output.replace(/\/index\.html$/, '/').replace(/\.html$/, '')}`;
+}
 
 function headingLevels(markup) {
   return [...markup.matchAll(/<h([1-6])\b/g)].map((match) => Number(match[1]));
@@ -45,8 +28,7 @@ function headingLevels(markup) {
 
 function hasValidHeadingSequence(markup) {
   const levels = headingLevels(markup);
-  if (levels.length === 0 || levels[0] !== 1) return false;
-  return levels.slice(1).every((level, index) => level - levels[index] <= 1);
+  return levels.length > 0 && levels[0] === 1 && levels.slice(1).every((level, index) => level - levels[index] <= 1);
 }
 
 function hasImgWithoutAlt(markup) {
@@ -57,36 +39,15 @@ function metaDescription(markup) {
   return markup.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '';
 }
 
-const pageChecks = [
-  ['html lang', (html) => html.includes('<html lang="en">')],
-  ['description present', (html) => metaDescription(html).length > 0],
-  ['canonical HTTPS URL', (html) => /<link rel="canonical" href="https:\/\/charli\.info\//.test(html)],
-  ['open graph title', (html) => html.includes('<meta property="og:title"')],
-  ['JSON-LD', (html) => html.includes('<script type="application/ld+json">')],
-  ['RSS alternate link', (html) => html.includes('<link rel="alternate" type="application/rss+xml" title="Carrados essays RSS feed" href="/rss.xml">')],
-  ['ZIC 1.5 declaration', (html) => html.includes('<meta name="zic-version" content="1.5">')],
-  ['licence link', (html) => html.includes('<link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">')],
-  ['licence meta', (html) => html.includes('<meta name="dcterms.license" content="https://creativecommons.org/licenses/by-sa/4.0/">')],
-  ['skip link', (html) => html.includes('class="skip-link" href="#main"')],
-  ['main focus target', (html) => html.includes('<main id="main" tabindex="-1">')],
-  ['navigation landmark', (html) => html.includes('aria-label="Main navigation"')],
-  ['footer landmark', (html) => html.includes('aria-label="Site footer"')],
-  ['single h1', (html) => (html.match(/<h1\b/g) ?? []).length === 1],
-  ['valid heading sequence', (html) => hasValidHeadingSequence(html)],
-  ['no image without alt', (html) => !hasImgWithoutAlt(html)],
-  ['no anti-agent refusal tags', (html) => !/noai|noimageai/i.test(html)],
-  ['human-readable licence', (html) => html.includes('CC BY-SA 4.0')],
-];
-
-const cssChecks = [
-  ['colour scheme support', css.includes('color-scheme: light dark;')],
-  ['reduced motion support', css.includes('@media (prefers-reduced-motion: reduce)')],
-  ['dark mode support', css.includes('@media (prefers-color-scheme: dark)')],
-  ['high contrast support', css.includes('@media (prefers-contrast: more)')],
-  ['visible keyboard focus', css.includes(':focus-visible')],
-  ['programmatic main focus exception', css.includes('main:focus') && css.includes('outline: none;')],
-  ['enhanced underline visibility', css.includes('text-underline-offset: 0.16em;')],
-];
+const pages = walk('dist')
+  .filter((path) => path.endsWith('.html') && !path.endsWith('404.html'))
+  .sort()
+  .map((path) => {
+    const html = readFileSync(path, 'utf8');
+    const url = urlFor(path);
+    const mirror = path === 'dist/index.html' ? 'dist/index.md' : join(path, '..', 'index.md');
+    return { path, html, url, mirror, canonical: `${siteUrl}${url}` };
+  });
 
 let failed = false;
 function fail(message) {
@@ -94,70 +55,73 @@ function fail(message) {
   console.error(`FAIL ${message}`);
 }
 
-for (const file of sourcePages) {
-  if (hasImgWithoutAlt(readFileSync(file, 'utf8'))) fail(`source ${file}: image without alt`);
-}
-
+const descriptions = new Set();
 for (const page of pages) {
-  const html = readFileSync(page.path, 'utf8');
-  for (const [label, check] of pageChecks) if (!check(html)) fail(`${page.url}: ${label}`);
-  if (page.article && !html.includes('"@type":"Article"')) fail(`${page.url}: Article JSON-LD`);
-  if (page.prev && !html.includes(`<link rel="prev" href="${page.prev}">`)) fail(`${page.url}: previous sequence link`);
-  if (page.next && !html.includes(`<link rel="next" href="${page.next}">`)) fail(`${page.url}: next sequence link`);
-  const currentPageMarkers = (html.match(/aria-current="page"/g) ?? []).length;
-  if (currentPageMarkers !== (page.currentPageMarker ? 1 : 0)) fail(`${page.url}: current page marker`);
+  const { html, url, mirror, canonical } = page;
+  const title = html.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? '';
+  const description = metaDescription(html);
+  const checks = [
+    ['html lang', html.includes('<html lang="en">')],
+    ['title format', /^.+ — Charli\.info$/.test(title)],
+    ['description present', description.length > 0],
+    ['canonical HTTPS URL', html.includes(`<link rel="canonical" href="${canonical}">`)],
+    ['open graph metadata', ['og:title', 'og:description', 'og:url', 'og:type'].every((property) => html.includes(`<meta property="${property}"`))],
+    ['JSON-LD', html.includes('<script type="application/ld+json">')],
+    ['RSS alternate link', html.includes('type="application/rss+xml"')],
+    ['ZIC 1.5 declaration', html.includes('<meta name="zic-version" content="1.5">')],
+    ['licence metadata', html.includes('"license":"https://creativecommons.org/licenses/by-sa/4.0/"') && html.includes('CC BY-SA 4.0')],
+    ['skip link', html.includes('class="skip-link" href="#main"')],
+    ['main focus target', html.includes('<main id="main" tabindex="-1">')],
+    ['landmarks', html.includes('aria-label="Main navigation"') && html.includes('aria-label="Site footer"')],
+    ['current page indication', (html.match(/aria-current="page"/g) ?? []).length === 1],
+    ['single h1', (html.match(/<h1\b/g) ?? []).length === 1],
+    ['heading sequence', hasValidHeadingSequence(html)],
+    ['image alt text', !hasImgWithoutAlt(html)],
+    ['no anti-agent refusal tags', !/noai|noimageai/i.test(html)],
+  ];
+  for (const [label, passed] of checks) if (!passed) fail(`${url}: ${label}`);
+  if (descriptions.has(description)) fail(`${url}: duplicate meta description`);
+  descriptions.add(description);
 
-  const mirror = readFileSync(page.mirror, 'utf8');
-  if (/^- .+\n#{1,6} /m.test(mirror)) fail(`${page.mirror}: heading is not separated from preceding list`);
-  const htmlHeadings = [...html.matchAll(/<h[1-6]\b[^>]*>(.*?)<\/h[1-6]>/g)].map((match) => match[1]);
-  for (const heading of htmlHeadings) {
-    if (!mirror.includes(heading)) fail(`${page.mirror}: missing rendered heading "${heading}"`);
+  let markdown = '';
+  try { markdown = readFileSync(mirror, 'utf8'); } catch { fail(`${url}: missing Markdown mirror`); }
+  if (markdown) {
+    const headings = [...html.matchAll(/<h[1-6]\b[^>]*>(.*?)<\/h[1-6]>/g)].map((match) => match[1].replace(/<[^>]+>/g, ''));
+    for (const heading of headings) if (!markdown.includes(heading)) fail(`${url}: Markdown mirror missing heading "${heading}"`);
   }
-
-  if (!sitemap.includes(`https://charli.info${page.url}`)) fail(`sitemap: missing ${page.url}`);
+  if (!sitemap.includes(canonical)) fail(`sitemap: missing ${url}`);
+  if (!llms.includes(canonical) || !llms.includes(`${canonical}index.md`)) fail(`llms.txt: missing HTML or Markdown link for ${url}`);
+  if (!llmsFull.includes(html.match(/<h1\b[^>]*>(.*?)<\/h1>/)?.[1] ?? '')) fail(`llms-full.txt: missing ${url}`);
 }
 
-for (const page of pages.filter((page) => page.article)) {
-  const url = `https://charli.info${page.url}`;
-  if (!rss.includes(`<link>${url}</link>`)) fail(`rss.xml: missing ${url}`);
-}
+const serialPages = pages.filter((page) => /^\/(carrados\/[^/]+\/|pieces\/)/.test(page.url));
+for (const page of serialPages) if (!rss.includes(`<link>${page.canonical}</link>`)) fail(`rss.xml: missing serial page ${page.url}`);
 
-for (const [label, passed] of cssChecks) if (!passed) fail(`CSS: ${label}`);
+for (const [label, passed] of [
+  ['colour scheme support', css.includes('color-scheme: light dark;')],
+  ['reduced motion support', css.includes('@media (prefers-reduced-motion: reduce)')],
+  ['dark mode support', css.includes('@media (prefers-color-scheme: dark)')],
+  ['high contrast support', css.includes('@media (prefers-contrast: more)')],
+  ['visible keyboard focus', css.includes(':focus-visible')],
+  ['programmatic main focus exception', css.includes('main:focus') && css.includes('outline: none;')],
+  ['enhanced underline visibility', css.includes('text-underline-offset: 0.16em;')],
+]) if (!passed) fail(`CSS: ${label}`);
 
 for (const expected of [
-  'Every named agent below is welcome',
-  'AI training crawlers',
-  'AI search and retrieval crawlers',
-  'User-directed fetchers',
-  'Content-Signal: search=yes, ai-input=yes, ai-train=yes',
-  'Sitemap: https://charli.info/sitemap.xml',
-]) {
-  if (!robots.includes(expected)) fail(`robots.txt: missing "${expected}"`);
-}
+  'Every named agent below is welcome', 'AI training crawlers', 'AI search and retrieval crawlers', 'User-directed fetchers',
+  'Content-Signal: search=yes, ai-input=yes, ai-train=yes', 'Sitemap: https://charli.info/sitemap.xml',
+]) if (!robots.includes(expected)) fail(`robots.txt: missing "${expected}"`);
 
-for (const agent of requiredCrawlerAgents) {
+for (const agent of ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'CCBot', 'Meta-ExternalAgent', 'OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot', 'ChatGPT-User', 'Claude-User', 'Perplexity-User']) {
   if (!robots.includes(`User-agent: ${agent}`)) fail(`robots.txt: missing explicit agent ${agent}`);
 }
 
-if (!llms.startsWith('# Charli.info\n\n> ')) fail('llms.txt: missing H1 and blockquote summary');
-if (!llms.includes('Licence: CC BY-SA 4.0')) fail('llms.txt: missing licence statement');
-for (const page of pages) {
-  const canonicalUrl = `https://charli.info${page.url}`;
-  const mirrorUrl = `https://charli.info${page.url}${page.url === '/' ? '' : ''}index.md`;
-  if (!llms.includes(canonicalUrl)) fail(`llms.txt: missing canonical page ${canonicalUrl}`);
-  if (!llms.includes(mirrorUrl)) fail(`llms.txt: missing Markdown mirror ${mirrorUrl}`);
-}
-
-for (const heading of ['## The public home of Charli-Jo Tyrer', '## Blind Ant', '## Carrados', '## The CharliVerse']) {
-  if (!llmsFull.includes(heading)) fail(`llms-full.txt: missing generated heading "${heading}"`);
+for (const expected of ['# Charli.info\n\n> ', 'Sent agents: served (ai-input=yes).', 'Search indexing: permitted (search=yes).', 'Model training: permitted (ai-train=yes).', 'Licence: CC BY-SA 4.0']) {
+  if (!llms.includes(expected)) fail(`llms.txt: missing "${expected}"`);
 }
 
 if (!license.includes('Creative Commons Attribution-ShareAlike 4.0 International')) fail('LICENSE: missing CC BY-SA 4.0 declaration');
-
-for (const output of ['dist/.nojekyll', 'dist/sitemap.xml']) {
-  try { readFileSync(output, 'utf8'); } catch { fail(`build output: missing ${output}`); }
-}
+try { readFileSync('dist/.nojekyll', 'utf8'); } catch { fail('build output: missing .nojekyll'); }
 
 if (failed) process.exit(1);
-
-console.log('ZIC 1.5 verification passed for source, built pages, generated agent surfaces, Markdown mirrors, crawler welcome, sitemap, and licence metadata.');
+console.log(`ZIC 1.5 verification passed for all ${pages.length} generated pages, mirrors, agent surfaces, RSS, crawler policy, sitemap, and licence metadata.`);

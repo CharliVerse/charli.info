@@ -1,0 +1,4 @@
+interface:
+  display_name: "ZIC Pre-Push"
+  short_description: "Verify Charli.info against ZIC before publishing."
+  default_prompt: "Use $zic-pre-push to verify this site before publishing."

@@ -3,7 +3,11 @@ const { title, description, type = 'WebPage', prev, next } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, 'https://charli.info').href;
 const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const licenseUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
-const documentTitle = title;
+const pageTitle = title.replace(/\s+\|\s+Charli-Jo Tyrer$/, '');
+const documentTitle = `${pageTitle} — Charli.info`;
+const isHome = currentPath === '/' || currentPath === '/charliverse';
+const isBlindAnt = currentPath === '/blind-ant' || /^\/(pieces|collections|people)(\/|$)/.test(currentPath);
+const isCarrados = currentPath === '/carrados' || currentPath.startsWith('/carrados/');
 
 const schemaOrg = type === 'WebSite'
   ? {
@@ -49,7 +53,7 @@ const schemaOrg = type === 'WebSite'
     <link rel="canonical" href={canonicalUrl} />
     {prev && <link rel="prev" href={prev} />}
     {next && <link rel="next" href={next} />}
-    <link rel="alternate" type="application/rss+xml" title="Carrados essays RSS feed" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Charli.info RSS feed" href="/rss.xml" />
     <link rel="license" href={licenseUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/styles/global.css" />
@@ -72,9 +76,9 @@ const schemaOrg = type === 'WebSite'
       <p>Charli.info</p>
       <nav aria-label="Main navigation">
         <ul>
-          <li><a href="/" aria-current={currentPath === '/' ? 'page' : undefined}>Home</a></li>
-          <li><a href="/blind-ant/" aria-current={currentPath === '/blind-ant' ? 'page' : undefined}>Blind Ant</a></li>
-          <li><a href="/carrados/" aria-current={currentPath === '/carrados' ? 'page' : undefined}>Carrados</a></li>
+          <li><a href="/" aria-current={isHome ? 'page' : undefined}>Home</a></li>
+          <li><a href="/blind-ant/" aria-current={isBlindAnt ? 'page' : undefined}>Blind Ant</a></li>
+          <li><a href="/carrados/" aria-current={isCarrados ? 'page' : undefined}>Carrados</a></li>
         </ul>
       </nav>
     </header>
