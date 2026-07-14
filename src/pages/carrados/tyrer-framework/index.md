@@ -137,6 +137,8 @@ Accessibility at this level becomes an engineering requirement rather than a soc
 
 The boundary between late Type 0 and early Type I is crossed when the accessible interface stops being a retrofit and starts being a native sibling generated from shared source data.
 
+**A note on register.** Types 0 and I are engineering claims about the present: they describe conditions that either exist now or are achievable with current technology, and they can be tested against it. Types II and III are the philosophical extension of the scale. They describe where the trajectory points, not what is being proposed. The scale is offered in the same spirit as Kardashev's: the near end is a measurement; the far end is a direction.
+
 ### Type II: Environmental Metadata Civilisation
 
 In a Type II civilisation, the physical environment itself becomes an information network. Objects, structures, and public spaces continuously broadcast machine-readable descriptions of their geometry, state, and purpose. Environmental information is dynamically available to any observer through any perceptual channel.
