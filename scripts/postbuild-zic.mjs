@@ -39,6 +39,27 @@ const pages = [
     description: 'Agent-first web engineering requirements for preserving public meaning across interfaces and readers.',
   },
   {
+    html: 'dist/carrados/classical-and-generative-accessibility/index.html',
+    markdown: 'dist/carrados/classical-and-generative-accessibility/index.md',
+    url: `${siteUrl}/carrados/classical-and-generative-accessibility/`,
+    label: 'Why Accessibility Keeps Getting Worse — and Why, for the First Time, It Might Not',
+    description: 'The Tyrer Framework in plain language: why accessibility erodes, the ladder from visual dominance to perceptual sovereignty, and the fork AI puts in front of us. By Charli-Jo Tyrer.',
+  },
+  {
+    html: 'dist/carrados/the-api-is-the-ui-now/index.html',
+    markdown: 'dist/carrados/the-api-is-the-ui-now/index.md',
+    url: `${siteUrl}/carrados/the-api-is-the-ui-now/`,
+    label: 'The API Is the UI Now',
+    description: "A quiet note on a framework, an architecture Salesforce built for its own reasons, and a first-class screen reader rendering a blind Salesforce user could have now. By Charli-Jo Tyrer.",
+  },
+  {
+    html: 'dist/carrados/the-insurance-that-never-pays-out/index.html',
+    markdown: 'dist/carrados/the-insurance-that-never-pays-out/index.md',
+    url: `${siteUrl}/carrados/the-insurance-that-never-pays-out/`,
+    label: 'The Insurance That Never Pays Out',
+    description: 'The Agentic AI Foundation just published the best case for accessibility-as-architecture in years — and then prescribed keeping the exact layer its own witness says never catches up. A reply. By Charli-Jo Tyrer.',
+  },
+  {
     html: 'dist/charliverse/index.html',
     markdown: 'dist/charliverse/index.md',
     url: `${siteUrl}/charliverse/`,

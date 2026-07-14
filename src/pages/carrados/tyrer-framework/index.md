@@ -309,4 +309,4 @@ The tools to solve it are arriving. The question is whether they will be used.
 
 ## This Document in Other Renderings
 
-This page is the canonical publication of the Tyrer Framework. The same document is also available as a Word file: [Download the Tyrer Framework as a Word document (.docx)](/documents/The_Tyrer_Framework.docx). The HTML at this URL is the authoritative version; the Word file is a rendering of it.
+This page is the canonical publication of the Tyrer Framework. The same document is also available as a Word file: [Download the Tyrer Framework as a Word document (.docx)](/documents/The_Tyrer_Framework.docx). [Read the plain-language rendering: Why Accessibility Keeps Getting Worse — and Why, for the First Time, It Might Not](/carrados/classical-and-generative-accessibility/). The HTML at this URL is the authoritative version; the Word file is a rendering of it.
