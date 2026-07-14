@@ -6,42 +6,15 @@
 /* ── Colour tokens ─────────────────────────────────────────────────────── */
 
 :root {
-  color-scheme: light dark;
-  --color-bg: #f6f8f5;
-  --color-text: #17211f;
-  --color-link: #006b67;
-  --color-link-visited: #5a3574;
-  --color-focus: #b8461f;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #111c1a;
-    --color-text: #edf4f0;
-    --color-link: #64e0d8;
-    --color-link-visited: #e1b6fb;
-    --color-focus: #ffb394;
-  }
-}
-
-@media (prefers-contrast: more) {
-  :root {
-    --color-bg: #ffffff;
-    --color-text: #000000;
-    --color-link: #000080;
-    --color-link-visited: #300060;
-    --color-focus: #000000;
-  }
-}
-
-@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
-  :root {
-    --color-bg: #000000;
-    --color-text: #ffffff;
-    --color-link: #ffff00;
-    --color-link-visited: #ffccff;
-    --color-focus: #ffffff;
-  }
+  color-scheme: light;
+  --background: #ffffff;
+  --text: #6d1026;
+  --heading: #1a1a1a;
+  --link: #8a1538;
+  --visited: #5a2a5a;
+  --muted: #555555;
+  --focus: #6b4a00;
+  --border: #d8d2d5;
 }
 
 /* ── Motion ────────────────────────────────────────────────────────────── */
@@ -59,8 +32,8 @@
 
 html {
   line-height: 1.6;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--background);
+  color: var(--text);
   font-family: Aptos, "Segoe UI Variable", "Segoe UI", Candara, sans-serif;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -70,8 +43,8 @@ body {
   margin: 2rem auto;
   max-width: 65ch;
   padding: 0 1rem;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--background);
+  color: var(--text);
 }
 
 main:focus {
@@ -86,8 +59,8 @@ main:focus {
   left: 1rem;
   z-index: 100;
   padding: 0.5rem 1rem;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--background);
+  color: var(--text);
   text-decoration: underline;
   transition: top 0.1s;
 }
@@ -99,13 +72,14 @@ main:focus {
 /* ── Focus ──────────────────────────────────────────────────────────────── */
 
 :focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 3px;
+  outline: 0.2rem solid var(--focus);
+  outline-offset: 0.2rem;
 }
 
 /* ── Typography ─────────────────────────────────────────────────────────── */
 
 h1, h2, h3, h4, h5, h6 {
+  color: var(--heading);
   font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
@@ -122,14 +96,14 @@ ul, ol {
 }
 
 a {
-  color: var(--color-link);
+  color: var(--link);
   text-decoration: underline;
-  text-decoration-thickness: 0.12em;
-  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.18em;
 }
 
 a:visited {
-  color: var(--color-link-visited);
+  color: var(--visited);
 }
 
 a[aria-current="page"] {
@@ -154,7 +128,7 @@ nav li {
 }
 
 header {
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid var(--border);
   margin-bottom: 3rem;
   padding-bottom: 1.5rem;
 }
@@ -189,16 +163,16 @@ nav li {
 }
 
 .destination {
-  border-left: 0.45rem solid var(--color-link);
+  border-left: 0.45rem solid var(--link);
   padding: 0.5rem 0 0.5rem 1.25rem;
 }
 
 .destination-art {
-  border-left-color: #a33d1d;
+  border-left-color: var(--text);
 }
 
 .destination-access {
-  border-left-color: #006b67;
+  border-left-color: var(--muted);
 }
 
 .destination h2 {
@@ -211,26 +185,21 @@ nav li {
 }
 
 .closing-note {
-  border-top: 1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
   font-size: 0.95rem;
   margin-top: 3rem;
   padding-top: 1.25rem;
 }
 
 main > section {
-  border-top: 1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
+  border-top: 1px solid var(--border);
   margin-top: 2.5rem;
   padding-top: 1.5rem;
 }
 
 footer {
-  border-top: 1px solid currentColor;
+  border-top: 1px solid var(--border);
   margin-top: 4rem;
   padding-top: 1.5rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  .destination-art {
-    border-left-color: #ffb394;
-  }
 }
