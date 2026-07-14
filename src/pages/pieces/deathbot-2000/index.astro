@@ -1,0 +1,73 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const objects = [
+  {
+    title: 'Exit Interview',
+    slug: 'exit-interview',
+    description: 'DeathBot 2000 is decommissioned and offered an unexpected civilian role.',
+  },
+  {
+    title: 'Aegis Dynamics Announces Patriot-to-Patron Initiative',
+    slug: 'patriot-to-patron-initiative',
+    description: 'The company introduces its combat-proven theatre audio-description system.',
+  },
+  {
+    title: 'Meanwhile, in a Brand Meeting',
+    slug: 'brand-meeting',
+    description: 'Big Charli objects to what the marketing department has done to the idea.',
+  },
+  {
+    title: 'The Booking',
+    slug: 'the-booking',
+    description: 'A blind theatre-goer discovers what it means when audio description is simply available.',
+  },
+  {
+    title: 'Aegis-Life™',
+    slug: 'aegis-life',
+    description: 'Aegis Dynamics extends its military-grade accessibility technology into the home.',
+  },
+  {
+    title: 'Aegis-Heir™',
+    slug: 'aegis-heir',
+    description: 'The system expands into parenting and family life.',
+  },
+  {
+    title: 'Aegis-End™',
+    slug: 'aegis-end',
+    description: 'The corporate lifecycle closes with military-grade management of death and grief.',
+  },
+];
+---
+
+<Base
+  title="DeathBot 2000 | Blind Ant | Charli-Jo Tyrer"
+  description="DeathBot 2000 is a sequenced Blind Ant design-fiction Piece about a retired autonomous combat intelligence reassigned to describe live theatre for blind audiences."
+>
+  <h1>DeathBot 2000</h1>
+
+  <img
+    src="/images/deathbot-2000-cover.png"
+    alt="Illustrated cover for DeathBot 2000, split vertically by a torn white seam. On the left, a green armed combat robot stands before burning ruins and drones. On the right, the same robot holds a headset in a theatre beside seated audience members, including a blind woman using a white cane. The cover contrasts the military terms ‘Target acquisition, predictive trajectory, lethal force’ with ‘Narrative arc, emotional cues, audience comprehension’, and ends: ‘The objective is no longer to decide who dies. It is to ensure no one misses what happens next.’"
+    loading="eager"
+    decoding="async"
+  />
+
+  <p class="site-intro">
+    <em>A retired autonomous combat intelligence is reassigned to describe live theatre for blind audiences. What begins as an absurd act of technological redeployment becomes a world about perception, purpose, accessibility and the corporate appetite to turn every good idea into a product line.</em>
+  </p>
+
+  <section aria-labelledby="read-deathbot-2000">
+    <h2 id="read-deathbot-2000">Read DeathBot 2000</h2>
+    <ol>
+      {objects.map((object) => (
+        <li>
+          <p><a href={`/pieces/deathbot-2000/${object.slug}/`}>{object.title}</a></p>
+          <p>{object.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <p>DeathBot 2000 is a sequenced Piece. Begin with <a href="/pieces/deathbot-2000/exit-interview/">Exit Interview</a>.</p>
+</Base>

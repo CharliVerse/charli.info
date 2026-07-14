@@ -1,0 +1,41 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+export function getStaticPaths() {
+  const objects = [
+    { title: 'Exit Interview', slug: 'exit-interview' },
+    { title: 'Aegis Dynamics Announces Patriot-to-Patron Initiative', slug: 'patriot-to-patron-initiative' },
+    { title: 'Meanwhile, in a Brand Meeting', slug: 'brand-meeting' },
+    { title: 'The Booking', slug: 'the-booking' },
+    { title: 'Aegis-Life™', slug: 'aegis-life' },
+    { title: 'Aegis-Heir™', slug: 'aegis-heir' },
+    { title: 'Aegis-End™', slug: 'aegis-end' },
+  ];
+
+  return objects.map((object, index) => ({
+    params: { object: object.slug },
+    props: {
+      object,
+      previous: index > 0 ? objects[index - 1] : undefined,
+      next: index < objects.length - 1 ? objects[index + 1] : undefined,
+    },
+  }));
+}
+
+const { object, previous, next } = Astro.props;
+---
+
+<Base
+  title={`${object.title} | DeathBot 2000 | Blind Ant`}
+  description={`${object.title} is an Object in DeathBot 2000, a sequenced Blind Ant design-fiction Piece.`}
+>
+  <h1>{object.title}</h1>
+
+  <nav aria-label="DeathBot 2000 sequence">
+    <ul>
+      {previous && <li>Previous in DeathBot 2000: <a href={`/pieces/deathbot-2000/${previous.slug}/`}>{previous.title}</a></li>}
+      {next && <li>Next in DeathBot 2000: <a href={`/pieces/deathbot-2000/${next.slug}/`}>{next.title}</a></li>}
+      {!next && <li><a href="/pieces/deathbot-2000/">Return to DeathBot 2000</a></li>}
+    </ul>
+  </nav>
+</Base>
