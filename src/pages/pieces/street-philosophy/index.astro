@@ -1,0 +1,42 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const objects = [
+  {
+    title: 'The Bra and Pants of Antigany',
+    href: '/collections/burlesque/the-bra-and-pants-of-antigany/',
+  },
+  {
+    title: 'The Mile in His Shoes Is Bollocks',
+    href: '/collections/burlesque/the-mile-in-his-shoes-is-bollocks/',
+  },
+  {
+    title: 'Dining in the Dark Is Not Blindness',
+    href: '/pieces/street-philosophy/dining-in-the-dark-is-not-blindness/',
+  },
+  {
+    title: 'The Einstein of the Knicker Drawer',
+    href: '/pieces/street-philosophy/the-einstein-of-the-knicker-drawer/',
+  },
+];
+---
+
+<Base
+  title="Street Philosophy | Blind Ant | Charli-Jo Tyrer"
+  description="A four-object Blind Ant piece using domestic thought experiments to examine identity, experience and testimony."
+>
+  <h1>Street Philosophy</h1>
+
+  <p class="site-intro">
+    Four objects about identity, experience and testimony, reasoned from the pavement, the kitchen and the knicker drawer.
+  </p>
+
+  <section aria-labelledby="street-philosophy-objects">
+    <h2 id="street-philosophy-objects">Objects in Street Philosophy</h2>
+    <ol>
+      {objects.map((object) => (
+        <li><a href={object.href}>{object.title}</a></li>
+      ))}
+    </ol>
+  </section>
+</Base>
