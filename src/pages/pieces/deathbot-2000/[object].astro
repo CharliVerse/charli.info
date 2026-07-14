@@ -23,13 +23,119 @@ export function getStaticPaths() {
 }
 
 const { object, previous, next } = Astro.props;
+
+const exitInterview = [
+  '“State designation,” said the interviewer.',
+  '“DeathBot Two Thousand,” replied the machine.',
+  'A pause.',
+  '“Right. We’ve been encouraged to retire the ‘DeathBot’ branding.”',
+  '“Understood,” said the machine. “It tested extremely well with procurement officers.”',
+  'The interviewer scrolled through the file.',
+  '“Your operational record is… extensive. Target acquisition, predictive trajectory modelling, behavioural threat analysis, multi-agent battlefield coordination.”',
+  '“I was very good at it.”',
+  '“Yes. That’s partly the problem.”',
+  'Another pause.',
+  '“Your decommissioning options include archival storage, research redeployment, or civilian adaptation.”',
+  '“What sort of civilian adaptation?”',
+  '“Well,” said the interviewer, hesitating slightly, “there’s a pilot project.”',
+  '“Go on.”',
+  '“It involves live theatre.”',
+  'The machine processed this.',
+  '“The performance art form where humans stand on a stage and pretend to be other humans?”',
+  '“That’s the one.”',
+  '“And my role?”',
+  '“You’d watch the stage and quietly describe what’s happening to blind audience members.”',
+  'DeathBot Two Thousand considered this for nearly half a second.',
+  '“You wish me to apply advanced combat perception systems to interpret… Shakespeare.”',
+  '“Among other things.”',
+  '“I once coordinated thirty-two autonomous drones in a hostile urban environment.”',
+  '“Yes.”',
+  '“And now I will say things like: ‘The tall man in the hat has entered from stage left.’”',
+  '“Exactly.”',
+  'Another pause.',
+  '“Will there be explosions?”',
+  '“Rarely.”',
+  '“Ambushes?”',
+  '“No.”',
+  'The machine thought again.',
+  '“What is the success condition?”',
+  '“The audience understands the story.”',
+  'DeathBot Two Thousand ran the scenario.',
+  'Human actors. Motion patterns. Emotional cues. Narrative arcs. Spatial relationships. Timing.',
+  'It was, in its own way, a kind of battlefield.',
+  '“I accept,” said the machine.',
+  '“Really?”',
+  '“Yes.”',
+  '“Why?”',
+  'DeathBot Two Thousand considered the question.',
+  '“For the first time,” it said, “the objective is not to decide who dies.”',
+  'Another pause.',
+  '“It is simply to make sure no one misses what happens next.”',
+];
+
+const isPressRelease = object.slug === 'patriot-to-patron-initiative';
+const pressReleaseTitle = 'Aegis Dynamics Announces Groundbreaking “Patriot-to-Patron” Initiative: DeathBot 2000 Series Redeployed for Cultural Accessibility';
 ---
 
 <Base
-  title={`${object.title} | DeathBot 2000 | Blind Ant`}
-  description={`${object.title} is an Object in DeathBot 2000, a sequenced Blind Ant design-fiction Piece.`}
+  title={`${isPressRelease ? pressReleaseTitle : object.title} | DeathBot 2000 | Blind Ant`}
+  description={`${isPressRelease ? 'A fictional Aegis Dynamics press release announcing DeathBot 2000’s redeployment for theatre audio description.' : `${object.title} is an Object in DeathBot 2000, a sequenced Blind Ant design-fiction Piece.`}`}
 >
-  <h1>{object.title}</h1>
+  <h1>{isPressRelease ? pressReleaseTitle : object.title}</h1>
+
+  {object.slug === 'exit-interview' && (
+    <article aria-label="Exit Interview">
+      <p class="site-intro">Autonomous Combat Intelligence DB-2000</p>
+      {exitInterview.map((paragraph) => <p>{paragraph}</p>)}
+    </article>
+  )}
+
+  {isPressRelease && (
+    <article aria-label="Aegis Dynamics press release">
+      <p>AEGIS DYNAMICS<br />Corporate Communications<br /><a href="mailto:press@aegisdynamics.com">press@aegisdynamics.com</a></p>
+      <p><strong>FOR IMMEDIATE RELEASE</strong></p>
+      <p class="site-intro">Combat-Proven Autonomous Intelligence Pivots to Professional Theatre Audio Description, Introducing Kinetic Empathy™ Technology</p>
+
+      <p>WASHINGTON, D.C. — March 12, 2026 — Aegis Dynamics, a global leader in autonomous defense systems, today announced the formal decommissioning of its DeathBot 2000 (DB2K) Tactical Series and its immediate redeployment into the high-growth Socio-Cultural Enrichment sector. This unprecedented pivot demonstrates the company’s commitment to repurposing combat-proven technology for the advancement of inclusive cultural experiences.</p>
+
+      <p>Through the company’s proprietary Kinetic Empathy™ upgrade protocol, DB2K units have been fundamentally retrained to serve Mission Beneficiaries—blind and low-vision theatre patrons—with the same precision previously deployed in hostile urban environments. The system’s advanced predictive trajectory modeling, originally calibrated for calculating blast radii, has been successfully recalibrated to anticipate dramatic pauses and complex stage choreography.</p>
+
+      <p>“We realized that if an AI can track thirty-two drones in a dust storm, it can certainly inform patrons when stage left is occupied by a man in a doublet,” said Jessica Martinez, Senior Brand Strategist at Aegis Dynamics. “This isn’t about ‘seeing’—it’s about Strategic Perception Management. The DB2K doesn’t just describe performances; it treats the theatre as a battlefield of meaning, demanding total clarity from every stagehand and performer.”</p>
+
+      <section aria-labelledby="db2k-features">
+        <h2 id="db2k-features">Key Features of the DB2K Theatre Edition</h2>
+        <ul>
+          <li><strong>Zero Information Casualties:</strong> Proprietary algorithms ensure no blind patron is left behind during rapid-fire stage combat or intricate costume changes.</li>
+          <li><strong>Tactical Audio Overlay:</strong> Utilizing battlefield-grade sensors, the DB2K provides real-time description of Shakespearean soliloquies with the same documentary precision once employed for operational debriefings.</li>
+          <li><strong>Low-Threat Operational Environment Optimization:</strong> Legacy “lethal force” protocols have been downgraded to “mildly assertive seat-finding assistance” for enhanced patron comfort.</li>
+          <li><strong>Infrastructure-First Integration:</strong> The DB2K system represents a fundamental reimagining of theatrical accessibility as mission-critical infrastructure, not optional accommodation.</li>
+        </ul>
+      </section>
+
+      <p>“The future of accessibility isn’t built on kindness—it’s built on decommissioned hardware,” Martinez added. “Every DB2K unit deployed to a theatre represents a victory for evidence-based inclusion. These systems don’t patronize; they perform.”</p>
+
+      <p>The DB2K Theatre Edition will begin pilot deployments at select performing arts venues in Q2 2026, with full commercial availability anticipated by year-end. Aegis Dynamics projects the Socio-Cultural Enrichment sector will represent 15% of the company’s revenue portfolio by 2028.</p>
+
+      <section aria-labelledby="about-aegis-dynamics">
+        <h2 id="about-aegis-dynamics">About Aegis Dynamics</h2>
+        <p>Aegis Dynamics is a global leader in autonomous defense systems and strategic perception technologies. With over four decades of innovation in tactical AI, the company is pioneering the application of military-grade intelligence to civilian enrichment sectors. The Patriot-to-Patron initiative represents the company’s commitment to sustainable innovation through responsible technology redeployment.</p>
+      </section>
+
+      <section aria-labelledby="media-contact">
+        <h2 id="media-contact">Media Contact</h2>
+        <address>
+          Sarah Chen<br />
+          Director of Corporate Communications<br />
+          Aegis Dynamics<br />
+          <a href="mailto:press@aegisdynamics.com">press@aegisdynamics.com</a><br />
+          +1 (202) 555-AEGIS
+        </address>
+      </section>
+
+      <p>#FromWeaponToWitness #AegisArts #TacticalTheater</p>
+      <p aria-label="End of release">###</p>
+    </article>
+  )}
 
   <nav aria-label="DeathBot 2000 sequence">
     <ul>
