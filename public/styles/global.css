@@ -6,7 +6,7 @@
 /* ── Colour tokens ─────────────────────────────────────────────────────── */
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --background: #ffffff;
   --text: #6d1026;
   --heading: #1a1a1a;
@@ -15,6 +15,45 @@
   --muted: #555555;
   --focus: #6b4a00;
   --border: #d8d2d5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #111c1a;
+    --text: #ffffff;
+    --heading: #ffffff;
+    --link: #64e0d8;
+    --visited: #e1b6fb;
+    --muted: #d0d0d0;
+    --focus: #ffdf94;
+    --border: #7a8582;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --background: #ffffff;
+    --text: #000000;
+    --heading: #000000;
+    --link: #000080;
+    --visited: #300060;
+    --muted: #000000;
+    --focus: #000000;
+    --border: #555555;
+  }
+}
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    --background: #000000;
+    --text: #ffffff;
+    --heading: #ffffff;
+    --link: #ffff00;
+    --visited: #ffccff;
+    --muted: #ffffff;
+    --focus: #ffffff;
+    --border: #ffffff;
+  }
 }
 
 /* ── Motion ────────────────────────────────────────────────────────────── */
@@ -113,6 +152,7 @@ a[aria-current="page"] {
 @media (prefers-contrast: more) {
   a {
     text-decoration-thickness: 0.16em;
+    text-underline-offset: 0.16em;
   }
 }
 
