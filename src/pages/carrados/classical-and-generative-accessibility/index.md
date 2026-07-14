@@ -23,7 +23,7 @@ If your position is that AI should be rejected outright, nothing here will align
 
 ## Classical accessibility doesn't feel wrong. It feels tired.
 
-At the start of 2026, classical accessibility doesn't feel incorrect, outdated, or misguided. It feels tired.
+At the start of 2026, classical accessibility didn't feel incorrect, outdated, or misguided. It felt tired.
 
 Tired in the way something feels when it has been carrying real weight for a long time — doing necessary work in a world that no longer matches the assumptions it was built on.
 
@@ -91,7 +91,7 @@ If the quantum web sounds exciting, it should also sound dangerous. Generative a
 
 ### 1. Fragmentation: the many-worlds problem
 
-In a world of on-demand generation, we lose shared reality. The Amazon I buy trousers from might not be the same Amazon you buy socks from. If the interface collapses differently for every user based on inferred intent, how do we collaborate? How do we troubleshoot? If I say "click the blue button" and your reality collapsed into a world with no buttons, we are not just using different tools; we are inhabiting different universes. For disabled users the risk is sharper still: a "simplified" version of the interface that removes complexity under the guise of helpfulness, trapping the user in a reduced reality they cannot see past.
+In a world of on-demand generation, we lose shared reality. The Amazon I buy pants from might not be the same Amazon you buy socks from. If the interface collapses differently for every user based on inferred intent, how do we collaborate? How do we troubleshoot? If I say "click the blue button" and your reality collapsed into a world with no buttons, we are not just using different tools; we are inhabiting different universes. For disabled users the risk is sharper still: a "simplified" version of the interface that removes complexity under the guise of helpfulness, trapping the user in a reduced reality they cannot see past.
 
 ### 2. Silent failure
 
