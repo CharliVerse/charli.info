@@ -6,6 +6,9 @@ const pages = [
   { path: 'dist/carrados/index.html', mirror: 'dist/carrados/index.md', url: '/carrados/', currentPageMarker: true },
   { path: 'dist/carrados/tyrer-framework/index.html', mirror: 'dist/carrados/tyrer-framework/index.md', url: '/carrados/tyrer-framework/', currentPageMarker: false },
   { path: 'dist/carrados/zic-design-standard/index.html', mirror: 'dist/carrados/zic-design-standard/index.md', url: '/carrados/zic-design-standard/', currentPageMarker: false },
+  { path: 'dist/carrados/classical-and-generative-accessibility/index.html', mirror: 'dist/carrados/classical-and-generative-accessibility/index.md', url: '/carrados/classical-and-generative-accessibility/', currentPageMarker: false, article: true, next: 'https://charli.info/carrados/the-api-is-the-ui-now/' },
+  { path: 'dist/carrados/the-api-is-the-ui-now/index.html', mirror: 'dist/carrados/the-api-is-the-ui-now/index.md', url: '/carrados/the-api-is-the-ui-now/', currentPageMarker: false, article: true, prev: 'https://charli.info/carrados/classical-and-generative-accessibility/', next: 'https://charli.info/carrados/the-insurance-that-never-pays-out/' },
+  { path: 'dist/carrados/the-insurance-that-never-pays-out/index.html', mirror: 'dist/carrados/the-insurance-that-never-pays-out/index.md', url: '/carrados/the-insurance-that-never-pays-out/', currentPageMarker: false, article: true, prev: 'https://charli.info/carrados/the-api-is-the-ui-now/' },
   { path: 'dist/charliverse/index.html', mirror: 'dist/charliverse/index.md', url: '/charliverse/', currentPageMarker: false },
 ];
 
@@ -15,6 +18,9 @@ const sourcePages = [
   'src/pages/carrados/index.astro',
   'src/pages/carrados/tyrer-framework/index.md',
   'src/pages/carrados/zic-design-standard/index.md',
+  'src/pages/carrados/classical-and-generative-accessibility/index.md',
+  'src/pages/carrados/the-api-is-the-ui-now/index.md',
+  'src/pages/carrados/the-insurance-that-never-pays-out/index.md',
   'src/pages/charliverse.astro',
   'src/layouts/Base.astro',
 ];
@@ -24,6 +30,7 @@ const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
 const robots = readFileSync('dist/robots.txt', 'utf8');
 const llms = readFileSync('dist/llms.txt', 'utf8');
 const llmsFull = readFileSync('dist/llms-full.txt', 'utf8');
+const rss = readFileSync('dist/rss.xml', 'utf8');
 const license = readFileSync('LICENSE', 'utf8');
 
 const requiredCrawlerAgents = [
@@ -56,6 +63,7 @@ const pageChecks = [
   ['canonical HTTPS URL', (html) => /<link rel="canonical" href="https:\/\/charli\.info\//.test(html)],
   ['open graph title', (html) => html.includes('<meta property="og:title"')],
   ['JSON-LD', (html) => html.includes('<script type="application/ld+json">')],
+  ['RSS alternate link', (html) => html.includes('<link rel="alternate" type="application/rss+xml" title="Carrados essays RSS feed" href="/rss.xml">')],
   ['ZIC 1.5 declaration', (html) => html.includes('<meta name="zic-version" content="1.5">')],
   ['licence link', (html) => html.includes('<link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">')],
   ['licence meta', (html) => html.includes('<meta name="dcterms.license" content="https://creativecommons.org/licenses/by-sa/4.0/">')],
@@ -93,6 +101,9 @@ for (const file of sourcePages) {
 for (const page of pages) {
   const html = readFileSync(page.path, 'utf8');
   for (const [label, check] of pageChecks) if (!check(html)) fail(`${page.url}: ${label}`);
+  if (page.article && !html.includes('"@type":"Article"')) fail(`${page.url}: Article JSON-LD`);
+  if (page.prev && !html.includes(`<link rel="prev" href="${page.prev}">`)) fail(`${page.url}: previous sequence link`);
+  if (page.next && !html.includes(`<link rel="next" href="${page.next}">`)) fail(`${page.url}: next sequence link`);
   const currentPageMarkers = (html.match(/aria-current="page"/g) ?? []).length;
   if (currentPageMarkers !== (page.currentPageMarker ? 1 : 0)) fail(`${page.url}: current page marker`);
 
@@ -104,6 +115,11 @@ for (const page of pages) {
   }
 
   if (!sitemap.includes(`https://charli.info${page.url}`)) fail(`sitemap: missing ${page.url}`);
+}
+
+for (const page of pages.filter((page) => page.article)) {
+  const url = `https://charli.info${page.url}`;
+  if (!rss.includes(`<link>${url}</link>`)) fail(`rss.xml: missing ${url}`);
 }
 
 for (const [label, passed] of cssChecks) if (!passed) fail(`CSS: ${label}`);
