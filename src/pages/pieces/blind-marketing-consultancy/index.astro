@@ -1,0 +1,46 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const objects = [
+  {
+    title: 'Big Charli’s Blind Marketing Consultancy™',
+    href: '/pieces/blind-marketing-consultancy/big-charlis-blind-marketing-consultancy/',
+    description: 'A promotional course in turning accessibility into emotionally manipulative return on investment.',
+  },
+];
+---
+
+<Base
+  title="Blind Marketing Consultancy | Blind Ant | Charli-Jo Tyrer"
+  description="Blind Marketing Consultancy is a Blind Ant design-fiction piece about the commercial performance of accessibility, led by Big Charli."
+  type="Article"
+>
+  <h1>Blind Marketing Consultancy</h1>
+
+  <img
+    src="/images/big-charli-blind-marketing-graphic.png"
+    width="1024"
+    height="1536"
+    alt="Cream promotional poster for Big Charli’s Blind Marketing Consultancy. Large black lettering is framed by blue icons of an eye, sunglasses, a megaphone, a target and a stylised person. The headline says, ‘They’ll never see you coming.’ The poster advertises a satirical course in selling overpriced technology to blind people without accessibility, ethics or usefulness."
+    loading="eager"
+    decoding="async"
+  />
+
+  <p class="site-intro">
+    A design-fiction piece about the commercial performance of accessibility: the campaigns, pitches and products that sell empathy while avoiding the people they claim to serve.
+  </p>
+
+  <section aria-labelledby="blind-marketing-consultancy-objects">
+    <h2 id="blind-marketing-consultancy-objects">Objects in Blind Marketing Consultancy</h2>
+    <ol>
+      {objects.map((object) => (
+        <li>
+          <p><a href={object.href}>{object.title}</a></p>
+          <p>{object.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <p>Blind Marketing Consultancy is intended to be read in sequence. Begin with <a href="/pieces/blind-marketing-consultancy/big-charlis-blind-marketing-consultancy/"><em>Big Charli’s Blind Marketing Consultancy™</em></a>.</p>
+</Base>
