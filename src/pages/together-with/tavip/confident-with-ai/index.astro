@@ -1,0 +1,42 @@
+---
+import Base from '../../../../layouts/Base.astro';
+
+const sessions = [
+  {
+    number: 'Session 1',
+    title: 'Getting Useful Answers from AI',
+    href: '/together-with/tavip/confident-with-ai/session-1/',
+  },
+  {
+    number: 'Session 2',
+    title: 'Accessing Images, Documents, Tables and Slides',
+    href: '/together-with/tavip/confident-with-ai/session-2/',
+  },
+  {
+    number: 'Session 3',
+    title: 'Using AI Safely',
+    href: '/together-with/tavip/confident-with-ai/session-3/',
+  },
+];
+---
+
+<Base
+  title="Confident with AI | Charli-Jo Tyrer and TAVIP"
+  description="A three-part practical course with TAVIP for blind and partially sighted people who want to use generative AI confidently, critically and safely."
+>
+  <p><a href="/together-with/">Together With&hellip;</a></p>
+  <h1>Confident with AI</h1>
+  <p class="site-intro">A three-part course with TAVIP</p>
+  <p><em>Confident with AI</em> is a practical course for blind and partially sighted people who want to use generative AI confidently, critically and safely.</p>
+  <p>Created and delivered by Charli-Jo Tyrer together with the Technology Association of Visually Impaired People, the course responds to questions and priorities identified through TAVIP&rsquo;s 2026 Technology Survey.</p>
+  <p>No previous knowledge of AI is required.</p>
+
+  <section aria-labelledby="sessions-heading">
+    <h2 id="sessions-heading">Sessions</h2>
+    <ol>
+      {sessions.map((session) => (
+        <li><a href={session.href}>{session.number}: {session.title}</a></li>
+      ))}
+    </ol>
+  </section>
+</Base>

@@ -9,6 +9,7 @@ const isHome = currentPath === '/' || currentPath === '/charliverse';
 const isBlindAnt = currentPath === '/blind-ant' || /^\/(pieces|collections|people)(\/|$)/.test(currentPath);
 const isCarrados = currentPath === '/carrados' || currentPath.startsWith('/carrados/');
 const isWriting = currentPath === '/perspectives' || currentPath.startsWith('/perspectives/');
+const isTogetherWith = currentPath === '/together-with' || currentPath.startsWith('/together-with/');
 
 const schemaOrg = type === 'WebSite'
   ? {
@@ -81,6 +82,7 @@ const schemaOrg = type === 'WebSite'
           <li><a href="/blind-ant/" aria-current={isBlindAnt ? 'page' : undefined}>Blind Ant</a></li>
           <li><a href="/carrados/" aria-current={isCarrados ? 'page' : undefined}>Carrados</a></li>
           <li><a href="/perspectives/" aria-current={isWriting ? 'page' : undefined}>Perspectives</a></li>
+          <li><a href="/together-with/" aria-current={isTogetherWith ? 'page' : undefined}>Together With&hellip;</a></li>
         </ul>
       </nav>
     </header>
