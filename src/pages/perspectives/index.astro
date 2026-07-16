@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const writings = [
+  {
+    title: 'First Light',
+    href: '/perspectives/first-light/',
+    description: 'A cosmic communique about the Fermi Paradox, responsibility and the possibility that we are early in a quiet universe.',
+  },
+  {
+    title: "Pascal's Wager 2.0",
+    href: '/perspectives/pascals-wager-2/',
+    description: 'A practical wager for an uncertain century: prepare for radical progress, collapse or continuity, and live well in each case.',
+  },
+];
+---
+
+<Base
+  title="Perspectives | Charli-Jo Tyrer"
+  description="Long-form essays and propositions by Charli-Jo Tyrer about the future, meaning and responsibility."
+>
+  <h1>Perspectives</h1>
+  <p class="site-intro">Long-form essays and propositions about the future, meaning and the responsibilities of being here.</p>
+
+  <section aria-labelledby="writings-list">
+    <h2 id="writings-list">Published perspectives</h2>
+    <ul>
+      {writings.map((writing) => (
+        <li><a href={writing.href}>{writing.title}</a> — {writing.description}</li>
+      ))}
+    </ul>
+  </section>
+</Base>
