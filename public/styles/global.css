@@ -232,6 +232,26 @@ nav li {
   padding-top: 1.25rem;
 }
 
+.piece-note {
+  border-left: 0.3rem solid var(--border);
+  margin: 2rem 0 2.5rem;
+  padding: 0.5rem 0 0.5rem 1.25rem;
+}
+
+.piece-note-label {
+  color: var(--muted);
+  font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.piece-note h2 {
+  margin-top: 0.5rem;
+}
+
 main > section {
   border-top: 1px solid var(--border);
   margin-top: 2.5rem;

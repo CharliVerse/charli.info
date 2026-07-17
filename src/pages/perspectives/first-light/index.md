@@ -9,6 +9,19 @@ description: "A cosmic communique about the Fermi Paradox, responsibility and th
 
 *A cosmic communique: an answer to the Fermi Paradox.*
 
+<aside class="piece-note" aria-labelledby="piece-note-heading">
+  <p class="piece-note-label">About this piece</p>
+  <h2 id="piece-note-heading">Why I made this</h2>
+  <p>“This all started with the “great filter” or as I came to call it “the gift that keeps on giving.” Every time someone wants to “max out” and argument – against GMOS, or Oil, or AI or trans-gender teens, they reach for the “Is this the great filter?” question…and drove me mad.</p>
+  <p>So, I spent a long time thinking about the idea of a great filter and AI allowed me to argue for and against the best Steel Man cases. I became unconvinced by all of them.</p>
+  <p>The other thing that bugged me was the idea that the idea that there should be live in the universe in the same variety and abundance as there is on earth eventually comes down to whether it starts or not. This is why the great filter is needed – otherwise we really would live in the Star Wars universe.</p>
+  <p>I have heard the Copernican principle used over and over again as a cudgel – who do you think you are? You are not special.</p>
+  <p>But someone is always first, the first is always special, just because they are first…</p>
+  <p>These are why this Perspectives piece exists. I don’t really buy any of the great filter arguments, I think we might be fir or at least first in our local area of the universe and that makes me feel funny about risk.”</p>
+</aside>
+
+<article class="piece">
+
 ## A letter to a silence
 
 Voyager carries a gold record: birdsong, a heartbeat, a mother's first words to her child, greetings in fifty-five languages, and a map of our sun drawn against fourteen pulsars. It was built on a premise so obvious that nobody thought to argue it: someone is out there; someone will find this; we are writing to a reader.
@@ -84,5 +97,7 @@ We do not speak into the silence because we know someone is listening. We speak 
 Be careful with it. Not frightened of it — careful. In a universe with no plan, careful is the whole of the law. Tend the light. It may be the first.
 
 ---
+
+</article>
 
 *Charli-Jo Tyrer · CC BY-SA 4.0*
