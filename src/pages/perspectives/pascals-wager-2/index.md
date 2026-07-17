@@ -9,6 +9,16 @@ description: "A practical wager for an uncertain century: prepare for radical pr
 
 *A practical wager for an uncertain century.*
 
+<aside class="piece-note" aria-labelledby="piece-note-heading">
+  <p class="piece-note-label">About this piece</p>
+  <h2 id="piece-note-heading">Why I made this</h2>
+  <p>“Something Dario Amodei, the head of Anthropic, wrote in one of his essays really stuck with me. He talked about “a hundred years of progress in a decade” being brought about by AI. I couldn’t stop thinking about this, what it would feel like – there is a slim chance we might find out in the next twenty-five years.</p>
+  <p>It will feel like time travel. If we have 100 years of progress in the 2040s, then to anyone living through it, it will feel like time dilation – they will reach a 2050 that is, technologically speaking, equivalent to what would have been 2150.</p>
+  <p>Given that the chance of the end of the world seems as likely or even more likely than this, it made me think of Pascals wager.”</p>
+</aside>
+
+<article class="piece">
+
 ## The wager of our time
 
 In Pascal's century, the question was God. In ours, it is the shape of the future.
@@ -52,6 +62,8 @@ Do not seek control; practise devotion. Tend daily to health, truth and the shap
 If the miracle arrives, stand in awe. If collapse arrives, meet it with dignity. If continuity carries on, live with curiosity and grace.
 
 This is a life worth living: not untouched by loss, but faithful to life itself.
+
+</article>
 
 ---
 
