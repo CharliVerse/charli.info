@@ -1,0 +1,38 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const objects = [
+  {
+    title: 'Come and Get Me',
+    href: '/pieces/come-and-get-me/come-and-get-me/',
+    description: 'A cosy speculative accessibility story about thirty metres of gravel and an excellent system.'
+  },
+  {
+    title: 'Come and Get Me — Part Two',
+    href: '/pieces/come-and-get-me/come-and-get-me-part-two/',
+    description: 'A cosy speculative accessibility story about a mobility robot and a load-bearing white lie.'
+  },
+  {
+    title: 'From Battlefield to Biscuits',
+    href: '/pieces/come-and-get-me/from-battlefield-to-biscuits/',
+    description: 'A review of Come and Get Me and the quiet revolution of speculative accessibility.'
+  }
+];
+---
+
+<Base title="Come and Get Me | Blind Ant" description="Come and Get Me is a cosy speculative accessibility story about technology, independence, and the human rituals that remain worth choosing.">
+  <h1>Come and Get Me</h1>
+  <p class="site-intro">A cosy speculative accessibility story.</p>
+
+  <section aria-labelledby="objects-heading">
+    <h2 id="objects-heading">Objects in Come and Get Me</h2>
+    <ol class="content-list">
+      {objects.map((object) => (
+        <li>
+          <a href={object.href}>{object.title}</a>
+          <p>{object.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
