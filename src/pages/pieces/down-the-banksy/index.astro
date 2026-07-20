@@ -1,0 +1,33 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const objects = [
+  {
+    title: 'The Shirt Knows',
+    href: '/pieces/down-the-banksy/the-shirt-knows/',
+    description: 'An interview on football, Englishness and an anti-racist public notice.'
+  },
+  {
+    title: 'They Put Me Between Lager and Life Insurance',
+    href: '/pieces/down-the-banksy/they-put-me-between-lager-and-life-insurance/',
+    description: 'An interview on the World Cup broadcast adaptation of the anti-racism piece.'
+  }
+];
+---
+
+<Base title="Down the Banksy | Blind Ant" description="Down the Banksy is public moral address: protest objects that issue notices rather than decorate surfaces.">
+  <h1>Down the Banksy</h1>
+  <p class="site-intro">Down the Banksy is public moral address: protest objects that issue notices rather than decorate surfaces.</p>
+
+  <section aria-labelledby="objects-heading">
+    <h2 id="objects-heading">Objects in Down the Banksy</h2>
+    <ol class="content-list">
+      {objects.map((object) => (
+        <li>
+          <a href={object.href}>{object.title}</a>
+          <p>{object.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
