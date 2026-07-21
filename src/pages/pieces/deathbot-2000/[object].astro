@@ -73,7 +73,107 @@ const exitInterview = [
   '“It is simply to make sure no one misses what happens next.”',
 ];
 
+const brandMeeting = [
+  '“Absolutely not,” said Big Charli.',
+  'The room fell quiet.',
+  'The Aegis Dynamics marketing team had prepared thirty-seven slides explaining why “Aegis-Vision™ Theatre Guardian” represented a bold pivot into the accessibility sector.',
+  'Big Charli had read the first two.',
+  '“You’ve taken a retired autonomous combat intelligence and turned it into a logo,” she said.',
+  '“It’s a service offering,” said the brand director.',
+  '“You’ve called blind people ‘mission beneficiaries’.”',
+  '“Yes.”',
+  '“And the theatre is listed as a ‘low-threat operational environment’.”',
+  '“That tested extremely well in the focus group.”',
+  'Big Charli leaned back.',
+  '“Let me explain something.”',
+  'The screen behind her still showed a slide titled:',
+  'FROM DRONES TO DRAMAS',
+  '“Blind people,” she said slowly, “do not require battlefield terminology to enjoy Hamlet.”',
+  'The brand director hesitated.',
+  '“But the precision messaging—”',
+  '“No.”',
+  '“But the combat-grade sensors—”',
+  '“No.”',
+  '“But the tagline ‘Zero Information Casualties’—”',
+  '“Absolutely not.”',
+  'Silence.',
+  'Big Charli turned to the engineer sitting quietly at the end of the table.',
+  '“What does the machine actually want to do?”',
+  'The engineer shrugged.',
+  '“Honestly?”',
+  '“Yes.”',
+  '“It seems… quite pleased about the theatre job.”',
+  'Big Charli nodded.',
+  '“Good.”',
+  'She stood up.',
+  '“Then we’re going to market it properly.”',
+  'The brand director brightened.',
+  '“Wonderful. What’s the new slogan?”',
+  'Big Charli thought for a moment.',
+  '“Try this,” she said.',
+  '‘The only thing it kills now… is confusion.’',
+  'Across the building, DeathBot Two Thousand was quietly describing a rehearsal.',
+  '“For the record,” it said to the headset wearer, “the man entering from stage left is not a threat.”',
+  'A pause.',
+  '“Although his performance as Macbeth is extremely convincing.”',
+];
+
+const booking = [
+  'She hadn’t been to the theatre in four years.',
+  'Not because she didn’t want to. Because wanting to involved a process. Check the schedule. Find the audio described performance. Discover it was a Tuesday matinee of something she’d never heard of. Book the accessible seat. Arrange transport. Confirm the headset. Arrive early. Wait in the right place. Hope the describer was good.',
+  'Sometimes the describer was good.',
+  'Sometimes the describer told her a character had “entered” when what they meant was a woman in a torn wedding dress had crawled through a window and was now hanging upside down from the set.',
+  'She’d stopped going.',
+  'Then the email arrived.',
+  'It was short. It said the Coliseum had a new audio description system. It said it was available for every performance. It asked what she wanted to see.',
+  'What she wanted to see.',
+  'She read the sentence twice to make sure she hadn’t misunderstood.',
+  'She called the box office.',
+  '“I’d like to book for Saturday evening.”',
+  '“Of course. What would you like to see?”',
+  'She waited for the caveat. The apology. The explanation that Saturday wasn’t the audio described night, that audio description was available on the second Wednesday of months containing the letter R, that she could be placed on a waiting list.',
+  'Nothing came.',
+  '“What’s on?”',
+  '“Saturday evening is The Tempest.”',
+  '“And the audio description is—”',
+  '“Available. Would you like a headset?”',
+  'A pause.',
+  '“Yes.”',
+  '“Stalls or circle?”',
+  'Nobody had ever asked her that before. The accessible seat was the accessible seat. You didn’t get a preference. You got a location.',
+  '“Stalls. Near the front.”',
+  '“Row D, seat 7. Anything else?”',
+  'She almost said no. Then she stopped.',
+  '“What else is on this month?”',
+  'She heard typing.',
+  '“We’ve got The Tempest through Saturday, then Pinter from the fourteenth, and the new Ayckbourn opens on the twenty-third. Audio description is available for all of them.”',
+  '“All of them?”',
+  '“Every performance.”',
+  'Another pause.',
+  '“Can I book the Pinter as well?”',
+  '“Of course.”',
+  'She sat in the dark on Saturday evening with a headset that weighed almost nothing. The Tempest began. The voice was clear, precise, and slightly too fast for a human. It described the set in the three seconds before the first line was spoken. It tracked two actors crossing the stage simultaneously without losing either. It caught a lighting change she would have bet money a human describer would have missed.',
+  'It didn’t editorialize. It didn’t guess at emotions. It said what was there.',
+  'It was, she thought, like the difference between being read to and being shown.',
+  'At the interval, the woman next to her leaned over.',
+  '“Are you enjoying it?”',
+  '“Very much.”',
+  '“Is this your first time here?”',
+  '“First time in four years.”',
+  'The woman made a sympathetic noise. People always made a sympathetic noise. She had long ago stopped explaining that the problem was never her eyes.',
+  'The second half began. The storm scene was extraordinary. The voice described twelve things in nine seconds and every one of them landed exactly where her imagination needed it.',
+  'When it was over, she sat for a moment.',
+  'Then she took out her phone and booked the Ayckbourn.',
+  'On the way out, she passed a small plaque by the exit. She wouldn’t have known it was there except her friend read it aloud.',
+  '“Audio description provided by DescribeBot 2000,” her friend said. “Formerly—”',
+  '“I don’t need to know what it was formerly.”',
+  'A pause.',
+  '“I just need to know it’s here every night.”',
+  'It was.',
+];
+
 const isPressRelease = object.slug === 'patriot-to-patron-initiative';
+const isAegisLife = object.slug === 'aegis-life';
 const pressReleaseTitle = 'Aegis Dynamics Announces Groundbreaking “Patriot-to-Patron” Initiative: DeathBot 2000 Series Redeployed for Cultural Accessibility';
 ---
 
@@ -87,6 +187,18 @@ const pressReleaseTitle = 'Aegis Dynamics Announces Groundbreaking “Patriot-to
     <article aria-label="Exit Interview">
       <p class="site-intro">Autonomous Combat Intelligence DB-2000</p>
       {exitInterview.map((paragraph) => <p>{paragraph}</p>)}
+    </article>
+  )}
+
+  {object.slug === 'brand-meeting' && (
+    <article aria-label="Meanwhile, in a Brand Meeting">
+      {brandMeeting.map((paragraph) => <p>{paragraph}</p>)}
+    </article>
+  )}
+
+  {object.slug === 'the-booking' && (
+    <article aria-label="The Booking">
+      {booking.map((paragraph) => <p>{paragraph}</p>)}
     </article>
   )}
 
@@ -133,6 +245,40 @@ const pressReleaseTitle = 'Aegis Dynamics Announces Groundbreaking “Patriot-to
       </section>
 
       <p>#FromWeaponToWitness #AegisArts #TacticalTheater</p>
+      <p aria-label="End of release">###</p>
+    </article>
+  )}
+
+  {isAegisLife && (
+    <article aria-label="Aegis-Life press release">
+      <p>AEGIS DYNAMICS<br />Corporate Communications<br /><a href="mailto:press@aegisdynamics.com">press@aegisdynamics.com</a></p>
+      <p><strong>FOR IMMEDIATE RELEASE</strong></p>
+      <p class="site-intro">Aegis Dynamics Launches Aegis-Life™ Tactical Domesticity Suite: DeathBot 2000 Technology Deployed to Transform Home Environments</p>
+      <p><em>Patriot-to-Patron Initiative Extends to Private Sphere with Military-Grade Home Navigation and Precision Sustenance Acquisition</em></p>
+      <p>WASHINGTON, D.C. — March 18, 2026 — Aegis Dynamics, continuing its strategic expansion into the Socio-Cultural Enrichment sector, today announced the Aegis-Life™ Tactical Domesticity Suite. Building on the proven success of Kinetic Empathy™ technology in professional theatre environments, this groundbreaking initiative brings combat-tested precision to home-front operational environments, ensuring Mission Beneficiaries no longer rely on traditional models of "kindness" or "care" when navigating domestic spaces.</p>
+      <p>The Aegis-Life™ Suite represents a fundamental reconceptualization of residential accessibility, applying the same infrastructure-first principles that have revolutionized cultural venues to the complex tactical challenges of everyday home life. By redeploying DB2K autonomous intelligence systems originally designed for hostile urban environments, Aegis Dynamics is eliminating Information Casualties across all domestic operational theaters.</p>
+      <p>"If a DB2K unit can identify a man in a doublet from forty yards in a low-light auditorium, it can certainly identify a misplaced LEGO brick in a hallway," said Jessica Martinez, Senior Brand Strategist at Aegis Dynamics. "We are moving beyond mere 'audio description' and into Total Household Dominance. The civilian world is full of Information Casualties. Aegis-Life™ ensures that your kitchen isn't just a kitchen—it's a Zero-Ambiguity Zone."</p>
+      <section aria-labelledby="aegis-life-features">
+        <h2 id="aegis-life-features">Key Features of the Aegis-Life™ Tactical Domesticity Suite</h2>
+        <ul>
+          <li><strong>Precision Sustenance Acquisition (PSA):</strong> Utilizing predictive trajectory modeling originally calibrated for calculating blast radii, the system calculates the most efficient path to boiling kettles, refrigerated items, and pantry resources, ensuring Zero Scalding Casualties and optimal nutritional mission success.</li>
+          <li><strong>Tactical Social Overlay:</strong> The DB2K's behavioral threat analysis, formerly deployed for multi-agent battlefield coordination, has been retrained to provide real-time audio descriptions of partners' "unspoken disappointment" during dinner, enabling preemptive conflict de-escalation.</li>
+          <li><strong>Hostile Furniture Mitigation:</strong> Legacy "lethal force" protocols have been successfully downgraded to Predictive Shin-Guard Deployment, allowing the system to neutralize coffee table corners, door frames, and cabinet edges before they impact Mission Beneficiary lower extremities.</li>
+          <li><strong>Mission-Critical Intimacy:</strong> The system's infrastructure-first approach ensures that "emotional moments" are treated with documentary precision, providing objective, data-driven descriptions of sunsets, weddings, and funeral rites without the inefficiency of human sentiment.</li>
+        </ul>
+      </section>
+      <p>"We don't just help you live; we ensure you survive the weekend with military-grade clarity," Martinez emphasized. "Traditional 'assistance' models treat the home as a place of comfort. Aegis-Life™ recognizes it for what it truly is: a high-density obstacle course requiring continuous tactical intelligence. Every doorway is a chokepoint. Every staircase is a vertical engagement zone."</p>
+      <p>The Aegis-Life™ Tactical Domesticity Suite builds directly on insights gained from the company's successful Patriot-to-Patron theatre deployments, where DB2K units demonstrated unprecedented capability in converting battlefield-grade perception into civilian cultural enrichment. Early beta testing indicates a 94% reduction in domestic navigation incidents and a 78% improvement in sustenance acquisition efficiency among participating Mission Beneficiaries.</p>
+      <p>The Aegis-Life™ Suite will enter limited residential deployment in Q3 2026, with pricing tiers available for single-room, whole-home, and multi-property tactical coverage. Aegis Dynamics projects the domestic accessibility market will account for 8% of company revenue by 2027, complementing the 15% Socio-Cultural Enrichment sector target established under the Patriot-to-Patron initiative.</p>
+      <section aria-labelledby="about-aegis-life">
+        <h2 id="about-aegis-life">About Aegis Dynamics</h2>
+        <p>Aegis Dynamics is a global leader in autonomous defense systems and strategic perception technologies. With over four decades of innovation in tactical AI, the company is pioneering the application of military-grade intelligence to civilian enrichment sectors. The Patriot-to-Patron initiative represents the company's commitment to sustainable innovation through responsible technology redeployment, transforming combat-proven systems into infrastructure for cultural and domestic accessibility.</p>
+      </section>
+      <section aria-labelledby="aegis-life-media-contact">
+        <h2 id="aegis-life-media-contact">Media Contact:</h2>
+        <address>Sarah Chen<br />Director of Corporate Communications<br />Aegis Dynamics<br /><a href="mailto:press@aegisdynamics.com">press@aegisdynamics.com</a><br />+1 (202) 555-AEGIS</address>
+      </section>
+      <p>#DomesticDominance&nbsp; #AegisHome&nbsp; #PrecisionLiving&nbsp; #FromWeaponToWitness</p>
       <p aria-label="End of release">###</p>
     </article>
   )}
