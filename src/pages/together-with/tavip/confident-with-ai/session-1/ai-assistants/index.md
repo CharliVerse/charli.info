@@ -398,6 +398,60 @@ Grok is one AI assistant. The others discussed during this course are ChatGPT, C
 
 **The skills you learn in this course transfer between all of them.**
 
+## AI assistants, models and the wild frontier
+
+So far, this handbook has treated ChatGPT, Claude, Copilot, Gemini and Grok as five AI assistants. That is the most useful way to begin. Underneath each assistant, however, is one or more AI models: the systems that generate the answers.
+
+An assistant is the service you use. A model is the engine inside it. The same assistant may use a fast model for an everyday question, a reasoning model for a difficult problem and a specialist model for voice or images. The provider may choose automatically, or may let you choose. This is why an assistant can change noticeably even though its name and app remain the same.
+
+The following is a snapshot from 21 July 2026. Model names and availability change extremely quickly.
+
+### The model families behind the five assistants
+
+#### ChatGPT: the GPT family
+
+ChatGPT is powered by OpenAI’s GPT models. The current frontier generation is GPT-5.6, with Sol, Terra and Luna variants offering different balances of capability, speed and cost. ChatGPT can route a request to an appropriate model, while some paid plans and specialist OpenAI products provide more choice. OpenAI also develops models for coding, voice, images and other particular forms of work.
+
+#### Claude: the Claude family
+
+Claude is powered by Anthropic’s Claude models. Sonnet 5 is the everyday default for many users and is designed for writing, coding, tool use and multi-step work. Opus 4.8 remains a more powerful option for demanding work. Fable 5 is Anthropic’s most capable generally available model, while the closely related Mythos 5 has restricted access because of its advanced cybersecurity capabilities. The older Haiku, Sonnet and Opus names originally formed a simple fast-to-powerful ladder; the newer family is less tidy, which is itself a sign of how quickly the frontier is moving.
+
+#### Copilot: a multi-model assistant
+
+Copilot is different because Microsoft does not present it as the product of one permanent model family. Microsoft’s consumer and workplace assistants have traditionally relied heavily on OpenAI models, and GPT-5.6 is the preferred model in Microsoft 365 Copilot as of July 2026. Microsoft now describes Copilot as model-diverse, with OpenAI, Anthropic, Microsoft and open models available in different products and settings. The name Copilot therefore tells you more about the Microsoft service around the model than about the particular model answering.
+
+#### Gemini: the Gemini family
+
+Gemini is both the name of Google’s assistant and its main model family. The current range includes Gemini 3.1 Pro for complex work, Gemini 3.1 Deep Think for difficult scientific and reasoning problems, Gemini 3.5 Flash for fast multimodal and agentic work, and Flash-Lite for efficient high-volume use. Gemini models are designed to work across text, images, audio and video rather than treating those as entirely separate worlds. Google also has specialist families for images, video, music and robotics.
+
+#### Grok: the Grok family
+
+Grok is powered by models developed by SpaceXAI, formerly xAI. Grok 4.5 is the current leading general model, with particular emphasis on coding, tool use and work carried out by AI agents. The wider family includes faster coding models and separate Grok Imagine models for images and video. Grok’s close connection with X and real-time search remains part of the assistant’s identity, but the models can also be used through Grok’s own apps and by developers.
+
+### Beyond the five
+
+The five assistants are prominent consumer services, not the whole AI world. Developers, companies and technically confident individuals can choose from hundreds of other models. Some are available through their maker’s website or an independent assistant. Others can be downloaded and run on a company’s own servers or, when small enough, on a personal computer.
+
+#### Open-weight models
+
+A closed model is normally used through its maker’s app or online service; its internal parameters are not released. With an open-weight model, the trained numerical weights can be downloaded, adapted and run elsewhere. This can offer more privacy, control and independence, but it requires hardware and technical knowledge. Open-weight does not always mean completely open source: the training data, full development process or licence may still impose limits.
+
+#### Chinese model families
+
+China is now one of the two main centres of frontier model development. DeepSeek’s V4 family combines long context, reasoning and agentic work at comparatively low cost. Alibaba’s Qwen family includes both very large services and smaller downloadable multimodal models. Z.ai’s GLM-5 family concentrates on coding and long-running agent tasks. Moonshot AI’s Kimi K3, released in July 2026, is a very large open-weight multimodal model aimed at long-context coding and agentic work. These families are not curiosities at the edge of the market: they compete with leading American models and are especially influential in the open-weight world. Users should still consider where their information is processed, the provider’s privacy terms and any restrictions that apply in their country or workplace.
+
+#### American open-weight models
+
+The United States also has an important open-weight ecosystem. Meta’s Llama family helped popularise downloadable general-purpose models. OpenAI’s gpt-oss models provide open-weight reasoning and tool use in sizes intended for servers and powerful personal hardware. Google’s Gemma models offer smaller open models related to its Gemini research, while NVIDIA’s Nemotron family is designed particularly for efficient, long-running AI agents. Many smaller assistants and business systems are built from these families rather than from the closed models their users may recognise.
+
+#### Mistral and the European alternative
+
+Mistral AI is very much still going. The French company offers the Le Chat assistant, commercial services and a continuing range of open-weight models. Mistral 3 includes Large 3, a powerful mixture-of-experts model, alongside smaller models that are easier to deploy locally. Mistral also develops specialist families for reasoning, coding, documents, audio and speech. Its importance is not only technical: it provides a significant European alternative to an AI landscape dominated by American and Chinese companies.
+
+### What should an ordinary user do with this?
+
+Probably nothing—unless you are curious. You do not need to follow model rankings or understand parameter counts to use an AI assistant well. Choose an assistant that is accessible, affordable and useful to you. The deeper lesson is simply that the name on the app is not the whole system. Models will be replaced, combined and specialised, while the skills you are learning—asking clearly, providing context, checking important answers and using your own judgement—will travel with you across all of them.
+
 ## About this handbook
 
 ### Author and organisation
