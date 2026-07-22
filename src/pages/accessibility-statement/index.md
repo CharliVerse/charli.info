@@ -52,8 +52,6 @@ Stated here because a conformance statement that hides its defects is a false st
 
 **Two links on the [Blind Ant](/blind-ant/) page point to People pages that do not yet exist** (Big Charli; Jessica Martinez). A link is a promise of a destination, and until the pages are published these links manufacture the failure this standard exists to prevent. They are being corrected — either by publishing the pages or by withdrawing the links until the pages are real.
 
-**One heading on the home page encodes the wrong structure.** "Together With…" is marked as a subsection of Perspectives when it is a sibling section, so non-visual readers and agents receive a hierarchy the navigation contradicts. This is a Rendering Casualty of the document's own organisation (ZIC §1.15) and is being corrected.
-
 When a defect above is fixed, it is removed from this section and the statement date is updated. The statement describes the site as it is, not as it is meant to be.
 
 ## Beyond the claim
