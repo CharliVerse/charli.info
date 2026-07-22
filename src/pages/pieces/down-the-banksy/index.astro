@@ -1,0 +1,43 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+const objects = [
+  {
+    title: 'The Shirt Knows',
+    href: '/pieces/down-the-banksy/the-shirt-knows/',
+    description: 'An interview on football, Englishness and an anti-racist public notice.'
+  },
+  {
+    title: 'They Put Me Between Lager and Life Insurance',
+    href: '/pieces/down-the-banksy/they-put-me-between-lager-and-life-insurance/',
+    description: 'An interview on the World Cup broadcast adaptation of the anti-racism piece.'
+  },
+  {
+    title: 'Price Both Columns: Peak Cluster, Wirral, and the Invoice Nobody Wants to Read',
+    href: '/pieces/down-the-banksy/price-both-columns/',
+    description: 'A public ledger of the costs of approving or refusing the Peak Cluster carbon capture pipeline.'
+  },
+  {
+    title: 'Wirral-Curious: Down the Banksy Comes Over the Water',
+    href: '/pieces/down-the-banksy/down-the-banksy-is-apparently-wirral-curious/',
+    description: 'An interview on Wirral, Peak Cluster and the costs that follow both approval and refusal.'
+  }
+];
+---
+
+<Base title="Down the Banksy | Blind Ant" description="Down the Banksy is public moral address: protest objects that issue notices rather than decorate surfaces.">
+  <h1>Down the Banksy</h1>
+  <p class="site-intro">Down the Banksy is public moral address: protest objects that issue notices rather than decorate surfaces.</p>
+
+  <section aria-labelledby="objects-heading">
+    <h2 id="objects-heading">Objects in Down the Banksy</h2>
+    <ol class="content-list">
+      {objects.map((object) => (
+        <li>
+          <a href={object.href}>{object.title}</a>
+          <p>{object.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
