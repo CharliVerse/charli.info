@@ -73,7 +73,7 @@ html {
   line-height: 1.6;
   background-color: var(--background);
   color: var(--text);
-  font-family: Aptos, "Segoe UI Variable", "Segoe UI", Candara, sans-serif;
+  font-family: Aptos, "Segoe UI", Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -119,7 +119,7 @@ main:focus {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading);
-  font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
+  font-family: inherit;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
   line-height: 1.3;
@@ -174,7 +174,7 @@ header {
 }
 
 header > p {
-  font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
+  font-family: inherit;
   font-size: 1.35rem;
   font-weight: 700;
   margin-top: 0;
@@ -191,7 +191,7 @@ nav li {
 }
 
 .site-intro {
-  font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
+  font-family: inherit;
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -220,7 +220,7 @@ nav li {
 }
 
 .destination-link {
-  font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
+  font-family: inherit;
   font-weight: 700;
 }
 
@@ -240,7 +240,7 @@ nav li {
 
 .piece-note-label {
   color: var(--muted);
-  font-family: Bahnschrift, Aptos Display, Aptos, "Segoe UI Variable", sans-serif;
+  font-family: inherit;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.04em;
