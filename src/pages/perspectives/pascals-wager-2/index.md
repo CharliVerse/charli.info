@@ -29,11 +29,32 @@ The wager is simple: live as if the extremes could come. If they do, be ready. I
 
 ## The three futures
 
-| Future | If we prepare | If we drift |
-| --- | --- | --- |
-| Radical progress | Healthy, awake and able to witness and contribute. | Too frail, numb or distracted to benefit. |
-| Collapse | Dignity, coherence and resilience in hardship. | Panic, despair and chaos inside and out. |
-| Continuity | A meaningful, well-lived life anyway. | Drift, wasted years and regret. |
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Future</th>
+      <th scope="col">If we prepare</th>
+      <th scope="col">If we drift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Radical progress</th>
+      <td>Healthy, awake and able to witness and contribute.</td>
+      <td>Too frail, numb or distracted to benefit.</td>
+    </tr>
+    <tr>
+      <th scope="row">Collapse</th>
+      <td>Dignity, coherence and resilience in hardship.</td>
+      <td>Panic, despair and chaos inside and out.</td>
+    </tr>
+    <tr>
+      <th scope="row">Continuity</th>
+      <td>A meaningful, well-lived life anyway.</td>
+      <td>Drift, wasted years and regret.</td>
+    </tr>
+  </tbody>
+</table>
 
 Preparation is not a prediction. It is a way of refusing to let uncertainty become an excuse for passivity.
 

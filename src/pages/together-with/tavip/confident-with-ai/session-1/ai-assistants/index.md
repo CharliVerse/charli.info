@@ -484,19 +484,69 @@ AI assistants change quickly. Features, prices, account requirements, availabili
 
 ## Glossary
 
-| Term | Definition |
-| --- | --- |
-| **AI assistant** | A computer program that you can have a conversation with using ordinary language. |
-| **Anthropic** | The AI company that developed Claude, known for emphasising helpful, honest and safe systems. |
-| **CC BY 4.0** | The Creative Commons Attribution 4.0 International licence, which allows copying, sharing, adapting and commercial use of a work as long as the creator is credited. |
-| **ChatGPT** | An AI assistant developed by OpenAI that is widely used for drafting text, brainstorming and solving everyday problems. |
-| **Claude** | An AI assistant developed by Anthropic. Its name is widely understood as a reference to Claude Shannon. It is often praised for natural writing and handling long documents. |
-| **Copilot** | Microsoft's AI assistant, named after an aircraft's second pilot to suggest that it works alongside you while you remain in control. |
-| **Gemini** | An AI assistant developed by Google, named after the Latin word for “twins” and the constellation, which can work with other Google services. |
-| **Google** | The technology company that makes the Gemini AI assistant. |
-| **GPT** | An acronym standing for **Generative Pre-trained Transformer**, the type of AI model that powers ChatGPT. |
-| **Grok** | An AI assistant created by xAI that has a playful, rebellious personality and can search the web and posts on X. |
-| **Microsoft** | The technology company behind the Copilot AI assistant and associated products. |
-| **OpenAI** | The artificial intelligence company that created ChatGPT. |
-| **TAVIP** | The Technology Association of Visually Impaired People, for which this handbook and the *Confident with AI* course were created. |
-| **xAI (SpaceXAI)** | The artificial intelligence company founded by Elon Musk that developed the Grok AI assistant. |
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Term</th>
+      <th scope="col">Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">AI assistant</th>
+      <td>A computer program that you can have a conversation with using ordinary language.</td>
+    </tr>
+    <tr>
+      <th scope="row">Anthropic</th>
+      <td>The AI company that developed Claude, known for emphasising helpful, honest and safe systems.</td>
+    </tr>
+    <tr>
+      <th scope="row">CC BY 4.0</th>
+      <td>The Creative Commons Attribution 4.0 International licence, which allows copying, sharing, adapting and commercial use of a work as long as the creator is credited.</td>
+    </tr>
+    <tr>
+      <th scope="row">ChatGPT</th>
+      <td>An AI assistant developed by OpenAI that is widely used for drafting text, brainstorming and solving everyday problems.</td>
+    </tr>
+    <tr>
+      <th scope="row">Claude</th>
+      <td>An AI assistant developed by Anthropic. Its name is widely understood as a reference to Claude Shannon. It is often praised for natural writing and handling long documents.</td>
+    </tr>
+    <tr>
+      <th scope="row">Copilot</th>
+      <td>Microsoft's AI assistant, named after an aircraft's second pilot to suggest that it works alongside you while you remain in control.</td>
+    </tr>
+    <tr>
+      <th scope="row">Gemini</th>
+      <td>An AI assistant developed by Google, named after the Latin word for “twins” and the constellation, which can work with other Google services.</td>
+    </tr>
+    <tr>
+      <th scope="row">Google</th>
+      <td>The technology company that makes the Gemini AI assistant.</td>
+    </tr>
+    <tr>
+      <th scope="row">GPT</th>
+      <td>An acronym standing for <strong>Generative Pre-trained Transformer</strong>, the type of AI model that powers ChatGPT.</td>
+    </tr>
+    <tr>
+      <th scope="row">Grok</th>
+      <td>An AI assistant created by xAI that has a playful, rebellious personality and can search the web and posts on X.</td>
+    </tr>
+    <tr>
+      <th scope="row">Microsoft</th>
+      <td>The technology company behind the Copilot AI assistant and associated products.</td>
+    </tr>
+    <tr>
+      <th scope="row">OpenAI</th>
+      <td>The artificial intelligence company that created ChatGPT.</td>
+    </tr>
+    <tr>
+      <th scope="row">TAVIP</th>
+      <td>The Technology Association of Visually Impaired People, for which this handbook and the <em>Confident with AI</em> course were created.</td>
+    </tr>
+    <tr>
+      <th scope="row">xAI (SpaceXAI)</th>
+      <td>The artificial intelligence company founded by Elon Musk that developed the Grok AI assistant.</td>
+    </tr>
+  </tbody>
+</table>
