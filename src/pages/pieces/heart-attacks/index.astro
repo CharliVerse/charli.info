@@ -1,0 +1,33 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { heartAttacksObjects } from '../../../content/heart-attacks';
+---
+
+<Base
+  title="Heart Attacks | Blind Ant | Charli-Jo Tyrer"
+  description="Heart Attacks is a sequenced Blind Ant Piece about blind skier Emma Heart, a tactile field of drones and the arguments that gather around a historic Paralympic race."
+>
+  <h1>Heart Attacks</h1>
+
+  <p class="site-intro">
+    A sequenced design-fiction Piece about blind skier Emma Heart, a tactile field of drones and the arguments that gather around a historic Paralympic race.
+  </p>
+
+  <section aria-labelledby="heart-attacks-objects">
+    <h2 id="heart-attacks-objects">Objects in Heart Attacks</h2>
+    <ol class="content-list">
+      {heartAttacksObjects.map((object) => (
+        <li>
+          <a href={`/pieces/heart-attacks/${object.slug}/`}>{object.title}</a>
+          <p>{object.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <p>
+    Heart Attacks is a sequenced Piece. Begin with
+    {' '}
+    <a href="/pieces/heart-attacks/who-is-skiing-the-mountain/">Who Is Skiing the Mountain?</a>
+  </p>
+</Base>
