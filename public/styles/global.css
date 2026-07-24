@@ -258,6 +258,30 @@ main > section {
   padding-top: 1.5rem;
 }
 
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  min-width: 36rem;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--heading);
+}
+
 footer {
   border-top: 1px solid var(--border);
   margin-top: 4rem;

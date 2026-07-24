@@ -1,0 +1,34 @@
+---
+interface RichRun {
+  text: string;
+  bold: boolean;
+  italic: boolean;
+}
+
+interface Props {
+  runs: readonly RichRun[];
+}
+
+const { runs } = Astro.props;
+---
+
+{runs.map((run) => {
+  const parts = run.text.split('\n');
+
+  return (
+    <>
+      {parts.map((part, index) => (
+        <>
+          {index > 0 && <br />}
+          {run.bold && run.italic
+            ? <strong><em>{part}</em></strong>
+            : run.bold
+              ? <strong>{part}</strong>
+              : run.italic
+                ? <em>{part}</em>
+                : part}
+        </>
+      ))}
+    </>
+  );
+})}

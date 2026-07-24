@@ -1,0 +1,80 @@
+---
+import RichText from '../../../components/RichText.astro';
+import { heartAttacksObjects } from '../../../content/heart-attacks';
+import Base from '../../../layouts/Base.astro';
+
+export function getStaticPaths() {
+  return heartAttacksObjects.map((object, index) => ({
+    params: { object: object.slug },
+    props: {
+      object,
+      previous: index > 0 ? heartAttacksObjects[index - 1] : undefined,
+      next: index < heartAttacksObjects.length - 1 ? heartAttacksObjects[index + 1] : undefined,
+    },
+  }));
+}
+
+const { object, previous, next } = Astro.props;
+---
+
+<Base
+  title={`${object.title} | Heart Attacks | Blind Ant`}
+  description={object.description}
+  type="Article"
+  prev={previous ? `/pieces/heart-attacks/${previous.slug}/` : undefined}
+  next={next ? `/pieces/heart-attacks/${next.slug}/` : undefined}
+>
+  <article aria-labelledby="object-title">
+    <h1 id="object-title">{object.title}</h1>
+
+    {object.blocks.map((block) => {
+      if (block.type === 'heading') {
+        return <h2>{block.text}</h2>;
+      }
+
+      if (block.type === 'table') {
+        const [header, ...body] = block.rows;
+        return (
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Competition results table">
+            <table>
+              <thead>
+                <tr>{header.map((cell) => <th scope="col"><RichText runs={cell} /></th>)}</tr>
+              </thead>
+              <tbody>
+                {body.map((row) => (
+                  <tr>{row.map((cell) => <td><RichText runs={cell} /></td>)}</tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+
+      return (
+        <p class:list={{ 'site-intro': block.intro }}>
+          <RichText runs={block.runs} />
+        </p>
+      );
+    })}
+  </article>
+
+  <nav aria-label="Heart Attacks sequence">
+    <ul>
+      {previous && (
+        <li>
+          Previous in Heart Attacks:
+          {' '}
+          <a href={`/pieces/heart-attacks/${previous.slug}/`}>{previous.title}</a>
+        </li>
+      )}
+      {next && (
+        <li>
+          Next in Heart Attacks:
+          {' '}
+          <a href={`/pieces/heart-attacks/${next.slug}/`}>{next.title}</a>
+        </li>
+      )}
+      {!next && <li><a href="/pieces/heart-attacks/">Return to Heart Attacks</a></li>}
+    </ul>
+  </nav>
+</Base>
