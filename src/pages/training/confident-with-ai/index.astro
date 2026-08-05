@@ -1,11 +1,11 @@
 ---
-import Base from '../../../../layouts/Base.astro';
-import { courseBase, modules, taskLinks, toolCards, type CoursePage } from '../../../../content/confident-with-ai-course';
+import Base from '../../../layouts/Base.astro';
+import { courseBase, modules, taskLinks, toolCards, type CoursePage } from '../../../content/confident-with-ai-course';
 const moduleHref = (page: CoursePage) => `${courseBase}/${page.number && page.number <= 17 ? 'modules' : 'further-study'}/${page.slug}/`;
 const parts = [...new Set(modules.map((page) => page.part))];
 ---
 <Base title="Confident with AI | Charli-Jo Tyrer and TAVIP" description="A self-study course for blind and partially sighted people using generative AI confidently, critically and safely." type="Course">
-  <p><a href="/together-with/">Training</a></p>
+  <p><a href="/training/">Training</a></p>
   <h1>Confident with AI</h1>
   <p class="site-intro">A self-study course for blind and partially sighted people, created by Charli-Jo Tyrer in association with the Technology Association of Visually Impaired People (TAVIP).</p>
   <p>This practical guide is about using generative AI confidently, critically and safely. No previous knowledge is required, and free tools are sufficient.</p>

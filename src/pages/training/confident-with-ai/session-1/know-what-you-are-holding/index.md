@@ -1,11 +1,11 @@
 ---
-layout: ../../../../../../layouts/Document.astro
+layout: ../../../../../layouts/Document.astro
 type: Article
 title: "Know What You Are Holding | Session 1: Confident with AI"
 description: "Answer-shaped objects and the human judgement that makes them useful, by Charli-Jo Tyrer for TAVIP."
 ---
 
-[Session 1: Getting Useful Answers from AI](/together-with/tavip/confident-with-ai/session-1/)
+[Session 1: Getting Useful Answers from AI](/training/confident-with-ai/session-1/)
 
 # Know What You Are Holding
 

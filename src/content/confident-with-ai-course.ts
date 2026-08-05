@@ -1,4 +1,4 @@
-export const courseBase = '/together-with/tavip/confident-with-ai';
+export const courseBase = '/training/confident-with-ai';
 
 export type CoursePage = {
   slug: string;
