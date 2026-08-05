@@ -1,0 +1,7 @@
+---
+import CoursePage from '../../../../../components/CoursePage.astro';
+import { modules } from '../../../../../content/confident-with-ai-course';
+export function getStaticPaths() { return modules.filter((page) => page.number && page.number >= 18).map((page) => ({ params: { slug: page.slug }, props: { page } })); }
+const { page } = Astro.props;
+---
+<CoursePage {page} />

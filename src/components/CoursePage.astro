@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { courseBase, modules, type CoursePage } from '../content/confident-with-ai-course';
+const { page, kind = 'module' } = Astro.props as { page: CoursePage; kind?: 'module' | 'tool-card' };
+const index = modules.findIndex((item) => item.slug === page.slug);
+const previous = index > 0 ? modules[index - 1] : undefined;
+const next = index >= 0 && index < modules.length - 1 ? modules[index + 1] : undefined;
+const href = (item: CoursePage) => `${courseBase}/${item.number && item.number <= 17 ? 'modules' : 'further-study'}/${item.slug}/`;
+---
+<Base title={`${page.title} | Confident with AI`} description={page.summary} type="LearningResource" prev={previous && href(previous)} next={next && href(next)}>
+  <p><a href={`${courseBase}/`}>Confident with AI course contents</a></p>
+  <p class="piece-note-label">{kind === 'tool-card' ? 'Dated Tool Card' : page.part}</p>
+  <h1>{page.number ? `${page.number}. ` : ''}{page.title}</h1>
+  <p class="site-intro">{page.summary}</p>
+
+  <aside class="course-entry" aria-labelledby="on-this-page">
+    <h2 id="on-this-page">What you need to know</h2>
+    <p>This page stands alone. No previous AI knowledge is required. You need access to an AI assistant only for the activity.</p>
+    <p><strong>Learning outcome:</strong> {page.outcome}</p>
+    {page.caution && <p><strong>Before you begin:</strong> {page.caution}</p>}
+  </aside>
+
+  <section aria-labelledby="lesson-heading">
+    <h2 id="lesson-heading">The lesson</h2>
+    {page.ideas.map((idea) => <p>{idea}</p>)}
+  </section>
+
+  <section aria-labelledby="activity-heading">
+    <h2 id="activity-heading">Try it</h2>
+    <p>{page.activity}</p>
+  </section>
+
+  <section aria-labelledby="checkpoint-heading">
+    <h2 id="checkpoint-heading">Checkpoint</h2>
+    <p>{page.checkpoint}</p>
+  </section>
+
+  <nav class="course-pagination" aria-label="Course page navigation">
+    <ul>
+      {previous && <li>Previous: <a href={href(previous)}>{previous.number}. {previous.title}</a></li>}
+      <li><a href={`${courseBase}/`}>Course contents</a></li>
+      {next && <li>Next: <a href={href(next)}>{next.number}. {next.title}</a></li>}
+    </ul>
+  </nav>
+
+  <section aria-labelledby="credit-heading">
+    <h2 id="credit-heading">About this course</h2>
+    <p><em>Confident with AI</em> was created by Charli-Jo Tyrer in association with the Technology Association of Visually Impaired People (TAVIP). Curriculum stewardship: Lucy Love-Child, Director of Training, Blind Ant Studio.</p>
+    <p>Licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+  </section>
+</Base>

@@ -1,42 +1,51 @@
 ---
 import Base from '../../../../layouts/Base.astro';
-
-const sessions = [
-  {
-    number: 'Session 1',
-    title: 'Getting Useful Answers from AI',
-    href: '/together-with/tavip/confident-with-ai/session-1/',
-  },
-  {
-    number: 'Session 2',
-    title: 'Understanding and Creating Visual Media When You Are Blind',
-    href: '/together-with/tavip/confident-with-ai/session-2/',
-  },
-  {
-    number: 'Session 3',
-    title: 'Using AI Safely',
-    href: '/together-with/tavip/confident-with-ai/session-3/',
-  },
-];
+import { courseBase, modules, taskLinks, toolCards, type CoursePage } from '../../../../content/confident-with-ai-course';
+const moduleHref = (page: CoursePage) => `${courseBase}/${page.number && page.number <= 17 ? 'modules' : 'further-study'}/${page.slug}/`;
+const parts = [...new Set(modules.map((page) => page.part))];
 ---
-
-<Base
-  title="Confident with AI | Charli-Jo Tyrer and TAVIP"
-  description="A three-part practical course with TAVIP for blind and partially sighted people who want to use generative AI confidently, critically and safely."
->
-  <p><a href="/together-with/">Together With&hellip;</a></p>
+<Base title="Confident with AI | Charli-Jo Tyrer and TAVIP" description="A self-study course for blind and partially sighted people using generative AI confidently, critically and safely." type="Course">
+  <p><a href="/together-with/">Training</a></p>
   <h1>Confident with AI</h1>
-  <p class="site-intro">A three-part course with TAVIP</p>
-  <p><em>Confident with AI</em> is a practical course for blind and partially sighted people who want to use generative AI confidently, critically and safely.</p>
-  <p>Created and delivered by Charli-Jo Tyrer together with the Technology Association of Visually Impaired People, the course responds to questions and priorities identified through TAVIP&rsquo;s 2026 Technology Survey.</p>
-  <p>No previous knowledge of AI is required.</p>
+  <p class="site-intro">A self-study course for blind and partially sighted people, created by Charli-Jo Tyrer in association with the Technology Association of Visually Impaired People (TAVIP).</p>
+  <p>This practical guide is about using generative AI confidently, critically and safely. No previous knowledge is required, and free tools are sufficient.</p>
 
-  <section aria-labelledby="sessions-heading">
-    <h2 id="sessions-heading">Sessions</h2>
-    <ol>
-      {sessions.map((session) => (
-        <li><a href={session.href}>{session.number}: {session.title}</a></li>
+  <section aria-labelledby="use-heading">
+    <h2 id="use-heading">How to use this course</h2>
+    <ul>
+      <li><strong>New to AI?</strong> Begin with <a href={`${courseBase}/modules/01-start-here/`}>Start Here: Your First Five Minutes with AI</a>, then follow the modules in order.</li>
+      <li><strong>Looking for a particular task?</strong> Use the <a href="#i-want-to">I want to&hellip;</a> menu.</li>
+    </ul>
+    <p>Every module is a self-contained page with a learning outcome, activity and checkpoint. Each ends with previous, contents and next links.</p>
+  </section>
+
+  {parts.map((part) => (
+    <section aria-labelledby={`part-${parts.indexOf(part)}`}>
+      <h2 id={`part-${parts.indexOf(part)}`}>{part}</h2>
+      {modules.filter((page) => page.part === part).map((page) => (
+        <article class="course-listing">
+          <h3><a href={moduleHref(page)}>{page.number}. {page.title}</a></h3>
+          <p>{page.summary}</p>
+        </article>
       ))}
-    </ol>
+    </section>
+  ))}
+
+  <section aria-labelledby="i-want-to">
+    <h2 id="i-want-to">I want to&hellip;</h2>
+    <ul>{taskLinks.map(([label, slug]) => { const page = modules.find((item) => item.slug === slug)!; return <li><a href={moduleHref(page)}>{label}</a></li>; })}</ul>
+  </section>
+
+  <section aria-labelledby="tool-cards">
+    <h2 id="tool-cards">Tool Cards</h2>
+    <p>Tool Cards contain dated product information. They can be updated or retired without rewriting the durable lessons.</p>
+    {toolCards.map((card) => <article class="course-listing"><h3><a href={`${courseBase}/tool-cards/${card.slug}/`}>{card.title}</a></h3><p>{card.summary}</p></article>)}
+  </section>
+
+  <section aria-labelledby="about-course">
+    <h2 id="about-course">About this course</h2>
+    <p><em>Confident with AI</em> was created by Charli-Jo Tyrer in association with TAVIP. It responds to questions and priorities identified through TAVIP’s 2026 Technology Survey.</p>
+    <p>Curriculum stewardship: Lucy Love-Child, Director of Training, Blind Ant Studio. Her rule is simple: if the learner did not get there, the material is wrong.</p>
+    <p>The course is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
   </section>
 </Base>
