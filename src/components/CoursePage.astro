@@ -20,15 +20,15 @@ const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}
   <aside class="course-entry" aria-labelledby="on-this-page">
     <h2 id="on-this-page">What you need to know</h2>
     <p>This page stands alone. No previous AI knowledge is required. You need access to an AI assistant only for the activity.</p>
-    {page.slug === '01-start-here' && <p>For the first exercise, <a href={`${courseBase}/tool-cards/ai-assistants/`}>go to chat dot com</a>. The Tool Card contains the current external link and account information.</p>}
+    {page.slug === '01-start-here' && <p>Go to <a href="https://www.chat.com/">www.chat.com</a> and ask your first question.</p>}
     <p><strong>Learning outcome:</strong> {page.outcome}</p>
     {page.caution && <p><strong>Before you begin:</strong> {page.caution}</p>}
   </aside>
 
-  <section aria-labelledby="lesson-heading">
+  {page.slug !== '01-start-here' && <section aria-labelledby="lesson-heading">
     <h2 id="lesson-heading">The lesson</h2>
     {page.ideas.map((idea) => <p>{idea}</p>)}
-  </section>
+  </section>}
 
   {kind === 'tool-card' && page.slug === 'ai-assistants' && (
     <section aria-labelledby="starting-door-heading">
@@ -42,8 +42,21 @@ const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}
 
   <section aria-labelledby="activity-heading">
     <h2 id="activity-heading">Try it</h2>
-    <p>{page.activity}</p>
+    {page.slug === '01-start-here' ? (
+      <>
+        <p>Open <a href="https://www.chat.com/">www.chat.com</a>. Find the message box and ask the assistant to explain something you already understand.</p>
+        <p>When it replies, say:</p>
+        <blockquote><p>Make that shorter and give me one example.</p></blockquote>
+      </>
+    ) : <p>{page.activity}</p>}
   </section>
+
+  {page.slug === '01-start-here' && (
+    <section aria-labelledby="stuck-heading">
+      <h2 id="stuck-heading">If you get stuck</h2>
+      <p>You may be asked to sign in or create an account, and the service may work differently in different places. If you cannot reach the message box, use the <a href={`${courseBase}/tool-cards/ai-assistants/`}>General AI Assistants Tool Card</a> to find another way to continue.</p>
+    </section>
+  )}
 
   <section aria-labelledby="checkpoint-heading">
     <h2 id="checkpoint-heading">Checkpoint</h2>
