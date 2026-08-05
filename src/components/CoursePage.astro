@@ -6,16 +6,21 @@ const index = modules.findIndex((item) => item.slug === page.slug);
 const previous = index > 0 ? modules[index - 1] : undefined;
 const next = index >= 0 && index < modules.length - 1 ? modules[index + 1] : undefined;
 const href = (item: CoursePage) => `${courseBase}/${item.number && item.number <= 17 ? 'modules' : 'further-study'}/${item.slug}/`;
+const estimatedMinutes = page.estimatedMinutes ?? 10;
+const reviewed = page.reviewed ?? '5 August 2026';
+const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}` : item.title;
 ---
 <Base title={`${page.title} | Confident with AI`} description={page.summary} type="LearningResource" prev={previous && href(previous)} next={next && href(next)}>
   <p><a href={`${courseBase}/`}>Confident with AI course contents</a></p>
   <p class="piece-note-label">{kind === 'tool-card' ? 'Dated Tool Card' : page.part}</p>
   <h1>{page.number ? `${page.number}. ` : ''}{page.title}</h1>
   <p class="site-intro">{page.summary}</p>
+  <p class="course-meta"><strong>Estimated time:</strong> {estimatedMinutes} minutes. <strong>Last reviewed:</strong> {reviewed}.</p>
 
   <aside class="course-entry" aria-labelledby="on-this-page">
     <h2 id="on-this-page">What you need to know</h2>
     <p>This page stands alone. No previous AI knowledge is required. You need access to an AI assistant only for the activity.</p>
+    {page.slug === '01-start-here' && <p>If you do not yet have an assistant, visit <a href={`${courseBase}/modules/02-choose-an-ai-assistant/`}>2. Choose an AI Assistant</a>, then return to this page.</p>}
     <p><strong>Learning outcome:</strong> {page.outcome}</p>
     {page.caution && <p><strong>Before you begin:</strong> {page.caution}</p>}
   </aside>
@@ -37,15 +42,15 @@ const href = (item: CoursePage) => `${courseBase}/${item.number && item.number <
 
   <nav class="course-pagination" aria-label="Course page navigation">
     <ul>
-      {previous && <li>Previous: <a href={href(previous)}>{previous.number}. {previous.title}</a></li>}
+      {previous && <li>Previous: <a href={href(previous)}>{label(previous)}</a></li>}
       <li><a href={`${courseBase}/`}>Course contents</a></li>
-      {next && <li>Next: <a href={href(next)}>{next.number}. {next.title}</a></li>}
+      {next && <li>Next: <a href={href(next)}>{label(next)}</a></li>}
     </ul>
   </nav>
 
   <section aria-labelledby="credit-heading">
     <h2 id="credit-heading">About this course</h2>
-    <p><em>Confident with AI</em> was created by Charli-Jo Tyrer in association with the Technology Association of Visually Impaired People (TAVIP). Curriculum stewardship: Lucy Love-Child, Director of Training, Blind Ant Studio.</p>
+    <p><em>Confident with AI</em> was created by Charli-Jo Tyrer in association with the Technology Association of Visually Impaired People (TAVIP).</p>
     <p>Licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
   </section>
 </Base>
