@@ -9,6 +9,7 @@ const parts = [...new Set(modules.map((page) => page.part))];
   <h1>Confident with AI</h1>
   <p class="site-intro">A self-study course for blind and partially sighted people, created by Charli-Jo Tyrer in association with the Technology Association of Visually Impaired People (TAVIP).</p>
   <p>This practical guide is about using generative AI confidently, critically and safely. No previous knowledge is required, and free tools are sufficient.</p>
+  <p><strong>Last reviewed:</strong> 5 August 2026.</p>
 
   <section aria-labelledby="use-heading">
     <h2 id="use-heading">How to use this course</h2>
@@ -17,6 +18,9 @@ const parts = [...new Set(modules.map((page) => page.part))];
       <li><strong>Looking for a particular task?</strong> Use the <a href="#i-want-to">I want to&hellip;</a> menu.</li>
     </ul>
     <p>Every module is a self-contained page with a learning outcome, activity and checkpoint. Each ends with previous, contents and next links.</p>
+    <h3>What the course assumes</h3>
+    <p>You need an internet connection and access to a general AI assistant for the practical activities. The course is device-neutral: it does not assume Windows, macOS, iOS, Android, JAWS, NVDA or VoiceOver. It describes goals and interactions rather than platform-specific keystrokes.</p>
+    <p>If a service does not work with your device or access method, choose another service. The durable lessons do not depend on one product.</p>
   </section>
 
   {parts.map((part) => (
@@ -24,8 +28,9 @@ const parts = [...new Set(modules.map((page) => page.part))];
       <h2 id={`part-${parts.indexOf(part)}`}>{part}</h2>
       {modules.filter((page) => page.part === part).map((page) => (
         <article class="course-listing">
-          <h3><a href={moduleHref(page)}>{page.number}. {page.title}</a></h3>
+          <h3><a href={moduleHref(page)}>{page.number ? `${page.number}. ` : ''}{page.title}</a></h3>
           <p>{page.summary}</p>
+          <p class="course-meta">Estimated time: {page.estimatedMinutes ?? 10} minutes.</p>
         </article>
       ))}
     </section>
@@ -39,13 +44,12 @@ const parts = [...new Set(modules.map((page) => page.part))];
   <section aria-labelledby="tool-cards">
     <h2 id="tool-cards">Tool Cards</h2>
     <p>Tool Cards contain dated product information. They can be updated or retired without rewriting the durable lessons.</p>
-    {toolCards.map((card) => <article class="course-listing"><h3><a href={`${courseBase}/tool-cards/${card.slug}/`}>{card.title}</a></h3><p>{card.summary}</p></article>)}
+    {toolCards.map((card) => <article class="course-listing"><h3><a href={`${courseBase}/tool-cards/${card.slug}/`}>{card.title}</a></h3><p>{card.summary}</p><p class="course-meta">Estimated time: {card.estimatedMinutes ?? 10} minutes. Last reviewed: {card.reviewed}.</p></article>)}
   </section>
 
   <section aria-labelledby="about-course">
     <h2 id="about-course">About this course</h2>
     <p><em>Confident with AI</em> was created by Charli-Jo Tyrer in association with TAVIP. It responds to questions and priorities identified through TAVIP’s 2026 Technology Survey.</p>
-    <p>Curriculum stewardship: Lucy Love-Child, Director of Training, Blind Ant Studio. Her rule is simple: if the learner did not get there, the material is wrong.</p>
     <p>The course is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
   </section>
 </Base>
