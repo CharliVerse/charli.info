@@ -20,7 +20,7 @@ const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}
   <aside class="course-entry" aria-labelledby="on-this-page">
     <h2 id="on-this-page">What you need to know</h2>
     <p>This page stands alone. No previous AI knowledge is required. You need access to an AI assistant only for the activity.</p>
-    {page.slug === '01-start-here' && <p>If you do not yet have an assistant, visit <a href={`${courseBase}/modules/02-choose-an-ai-assistant/`}>2. Choose an AI Assistant</a>, then return to this page.</p>}
+    {page.slug === '01-start-here' && <p>For the first exercise, <a href={`${courseBase}/tool-cards/ai-assistants/`}>go to chat dot com</a>. The Tool Card contains the current external link and account information.</p>}
     <p><strong>Learning outcome:</strong> {page.outcome}</p>
     {page.caution && <p><strong>Before you begin:</strong> {page.caution}</p>}
   </aside>
@@ -29,6 +29,16 @@ const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}
     <h2 id="lesson-heading">The lesson</h2>
     {page.ideas.map((idea) => <p>{idea}</p>)}
   </section>
+
+  {kind === 'tool-card' && page.slug === 'ai-assistants' && (
+    <section aria-labelledby="starting-door-heading">
+      <h2 id="starting-door-heading">Starting door for Module 1</h2>
+      <p><a href="https://chat.com/">Open chat.com</a>. This short address currently redirects to ChatGPT.</p>
+      <p>ChatGPT is named here as a low-friction starting door, not as a recommendation over other assistants. The durable course lessons do not depend on it.</p>
+      <p>OpenAI currently says people in the UK can try ChatGPT without creating an account. Without an account, only one conversation is available at a time and it is not saved. Creating or signing into an account may take additional time and may involve an email code or another verification step. OpenAI says phone verification is no longer required for ordinary ChatGPT account creation.</p>
+      <p><strong>Link and account information verified:</strong> 5 August 2026.</p>
+    </section>
+  )}
 
   <section aria-labelledby="activity-heading">
     <h2 id="activity-heading">Try it</h2>
