@@ -51,6 +51,30 @@ import Base from '../layouts/Base.astro';
     <p><a class="destination-link" href="/training/">Go to Training</a></p>
   </section>
 
+  <section id="newsletter" aria-labelledby="newsletter-heading">
+    <h2 id="newsletter-heading">The CharliVerse newsletter</h2>
+    <p>Get dispatches from across the CharliVerse: new writing, conceptual art, accessibility thinking, training and experiments with AI.</p>
+
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/CharliVerse"
+      method="post"
+      class="newsletter-form embeddable-buttondown-form"
+    >
+      <label for="bd-email">Email address</label>
+      <input
+        type="email"
+        name="email"
+        id="bd-email"
+        autocomplete="email"
+        required
+      />
+      <input type="hidden" name="embed" value="1" />
+      <button type="submit">Subscribe</button>
+    </form>
+
+    <p class="newsletter-note">Buttondown will process your email address to deliver the newsletter. You can unsubscribe at any time. <a href="https://buttondown.com/refer/CharliVerse">Powered by Buttondown</a>.</p>
+  </section>
+
   <p class="closing-note">Read the site's <a href="/accessibility-statement/">Accessibility and Conformance Statement</a>.</p>
   <p class="closing-note">Everything on this site is published under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons licence</a> unless otherwise stated.</p>
 </Base>
