@@ -21,13 +21,23 @@ const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}
     <h2 id="on-this-page">What you need to know</h2>
     <p>This page stands alone. No previous AI knowledge is required. You need access to an AI assistant only for the activity.</p>
     {page.slug === '01-start-here' && <p>Go to <a href="https://www.chat.com/">www.chat.com</a> and ask your first question.</p>}
+    {page.slug === '01-start-here' && <p>We use ChatGPT for this first exercise because it provides a simple starting point. In the next module, you can choose a different assistant.</p>}
     <p><strong>Learning outcome:</strong> {page.outcome}</p>
     {page.caution && <p><strong>Before you begin:</strong> {page.caution}</p>}
   </aside>
 
-  {page.slug !== '01-start-here' && <section aria-labelledby="lesson-heading">
+  <section aria-labelledby="lesson-heading">
     <h2 id="lesson-heading">The lesson</h2>
     {page.ideas.map((idea) => <p>{idea}</p>)}
+    {page.slug === '01-start-here' && <p>Notice that you do not need to start again. Your second instruction changes the answer within the same conversation.</p>}
+    {page.slug === '02-choose-an-ai-assistant' && <p>See the <a href={`${courseBase}/tool-cards/ai-assistants/`}>General AI Assistants Tool Card</a> for services you can try.</p>}
+    {page.criteria && <><h3>What to check</h3><ul>{page.criteria.map((criterion) => <li>{criterion}</li>)}</ul></>}
+    {page.taskMap && <><h3>Match the task to the kind of help</h3><table><thead><tr><th scope="col">If you need to…</th><th scope="col">Ask AI to…</th></tr></thead><tbody>{page.taskMap.map((row) => <tr><td>{row.need}</td><td>{row.ask}</td></tr>)}</tbody></table></>}
+  </section>
+
+  {page.workedExample && <section aria-labelledby="worked-example-heading">
+    <h2 id="worked-example-heading">Worked example</h2>
+    {page.workedExample.map((paragraph) => <p>{paragraph}</p>)}
   </section>}
 
   {kind === 'tool-card' && page.slug === 'ai-assistants' && (
@@ -49,7 +59,7 @@ const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}
         <p>When it replies, say:</p>
         <blockquote><p>Make that shorter and give me one example.</p></blockquote>
       </>
-    ) : <p>{page.activity}</p>}
+    ) : <><p>{page.activity}</p>{page.activitySteps && <><p>{page.slug === '03-first-useful-conversation' ? 'If you need a task, send these messages one at a time in the same conversation:' : 'Fallback prompt:'}</p><ol>{page.activitySteps.map((step) => <li><q>{step}</q></li>)}</ol></>}</>}
   </section>
 
   {page.slug === '01-start-here' && (
