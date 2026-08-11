@@ -7,7 +7,7 @@ const previous = index > 0 ? modules[index - 1] : undefined;
 const next = index >= 0 && index < modules.length - 1 ? modules[index + 1] : undefined;
 const href = (item: CoursePage) => `${courseBase}/${item.number && item.number <= 17 ? 'modules' : 'further-study'}/${item.slug}/`;
 const estimatedMinutes = page.estimatedMinutes ?? 10;
-const reviewed = page.reviewed ?? '5 August 2026';
+const reviewed = page.reviewed ?? '11 August 2026';
 const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}` : item.title;
 ---
 <Base title={`${page.title} | Confident with AI`} description={page.summary} type="LearningResource" prev={previous && href(previous)} next={next && href(next)}>
@@ -32,6 +32,11 @@ const label = (item: CoursePage) => item.number ? `${item.number}. ${item.title}
     {page.slug === '01-start-here' && <p>Notice that you do not need to start again. Your second instruction changes the answer within the same conversation.</p>}
     {page.slug === '02-choose-an-ai-assistant' && <p>See the <a href={`${courseBase}/tool-cards/ai-assistants/`}>General AI Assistants Tool Card</a> for services you can try.</p>}
     {page.criteria && <><h3>What to check</h3><ul>{page.criteria.map((criterion) => <li>{criterion}</li>)}</ul></>}
+    {page.lessonSections?.map((section) => <section>
+      <h3>{section.heading}</h3>
+      {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+      {section.items && <ul>{section.items.map((item) => <li>{item}</li>)}</ul>}
+    </section>)}
     {page.taskMap && <><h3>Match the task to the kind of help</h3><table><thead><tr><th scope="col">If you need to…</th><th scope="col">Ask AI to…</th></tr></thead><tbody>{page.taskMap.map((row) => <tr><td>{row.need}</td><td>{row.ask}</td></tr>)}</tbody></table></>}
   </section>
 
